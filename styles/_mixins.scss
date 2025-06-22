@@ -1,0 +1,23 @@
+@mixin input-base {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  outline: none;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: unset;
+  font-size: unset;
+  text-align: left;
+  width: 220px;
+
+  &:disabled {
+    opacity: .5;
+  }
+
+  &:focus-visible {
+    outline: solid 2px var(--color-primary);
+  }
+}
