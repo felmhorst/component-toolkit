@@ -21,3 +21,12 @@
     outline: solid 2px var(--color-primary);
   }
 }
+
+@mixin hide-preserve-focus {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}

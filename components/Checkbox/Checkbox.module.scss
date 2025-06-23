@@ -1,0 +1,36 @@
+@use '../../styles/mixins' as *;
+
+.container {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox {
+  @include input-base;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.checkmark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--color-primary);
+  visibility: hidden;
+}
+
+.hidden {
+  @include hide-preserve-focus;
+
+  &:checked ~ * .checkmark {
+    visibility: visible;
+  }
+
+  &:focus-visible ~ .checkbox {
+    outline-offset: 2px;
+    outline: solid 2px var(--color-primary);
+  }
+}
