@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import {TextField} from "@/components/TextField/TextField";
 import {TextArea} from "@/components/TextArea/TextArea";
 import {PasswordField} from "@/components/PasswordField/PasswordField";
+import {Button} from "@/components/Button/Button";
 
 export default function Home() {
     return (
@@ -10,6 +11,11 @@ export default function Home() {
             <TextField/>
             <PasswordField/>
             <TextArea/>
+            <Button theme={"primary"}>test</Button>
+            <Button theme={"secondary"}>test</Button>
+            <Button theme={"danger"}>test</Button>
+            <Button theme={"warning"}>test</Button>
+            <Button theme={"success"}>test</Button>
         </div>
     );
 }

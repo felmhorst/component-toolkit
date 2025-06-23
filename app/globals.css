@@ -4,12 +4,18 @@
   --color-surface-2: #333742;
   --color-on-surface: #E2E2E2;
   --color-on-surface-2: #989898;
+
   --color-primary: #5F26D2;
-  /*
-  --color-success
-  --color-error
-  --color-warning
-  */
+  --color-on-primary: #FFFFFF;
+
+  --color-success: #30e454;
+  --color-on-success: #15161A;
+
+  --color-warning: #d29d12;
+  --color-on-warning: #15161A;
+
+  --color-danger: #C02F2F;
+  --color-on-danger: #FFFFFF;
 
   --border-radius-md: 4px;
   --box-shadow-md: 0 6px 12px rgba(0, 0, 0, .15);
