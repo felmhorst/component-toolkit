@@ -4,6 +4,7 @@ import {TextArea} from "@/components/TextArea/TextArea";
 import {PasswordField} from "@/components/PasswordField/PasswordField";
 import {Button} from "@/components/Button/Button";
 import {Checkbox} from "@/components/Checkbox/Checkbox";
+import {Switch} from "@/components/Switch/Switch";
 
 export default function Home() {
     return (
@@ -18,6 +19,7 @@ export default function Home() {
             <Button theme={"warning"}>test</Button>
             <Button theme={"success"}>test</Button>
             <Checkbox/>
+            <Switch/>
         </div>
     );
 }

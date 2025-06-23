@@ -1,21 +1,17 @@
 import React from "react";
 import styles from "./Checkbox.module.css";
 
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-
-}
-
-export const Checkbox = (props: CheckboxProps) => {
+export const Checkbox = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     const {
         className,
         ...rest
     } = props;
 
     return (
-        <label className={styles.container}>
+        <label className={`${styles.container} ${className}`}>
             <input
                 {...rest}
-                className={styles.hidden}
+                className={styles.input}
                 type={'checkbox'}/>
             <div className={styles.checkbox}>
                 <span className={styles.checkmark}>

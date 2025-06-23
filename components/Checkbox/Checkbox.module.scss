@@ -22,7 +22,7 @@
   visibility: hidden;
 }
 
-.hidden {
+.input {
   @include hide-preserve-focus;
 
   &:checked ~ * .checkmark {

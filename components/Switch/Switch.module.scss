@@ -1,0 +1,60 @@
+@use '../../styles/mixins' as *;
+
+.container {
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.switch {
+  @include input-base;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  border-radius: 10px;
+  transition: background-color .2s;
+
+  &:hover .slider {
+    left: 4px;
+    background-color: var(--color-on-surface);
+  }
+}
+
+.slider {
+  display: block;
+  position: relative;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color-on-surface-2);
+  transition: left .2s, background-color .2s;
+}
+
+.input {
+  @include hide-preserve-focus;
+
+  &:focus-visible ~ .switch {
+    outline: solid 2px var(--color-primary);
+    & .slider {
+      left: 4px;
+      background-color: var(--color-on-surface);
+    }
+  }
+
+  &:checked ~ .switch {
+    background-color: var(--color-primary);
+
+    & .slider {
+      background-color: var(--color-on-surface);
+      left: calc(100% - 16px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider {
+    transition: left 0s, background-color .2s;
+  }
+}
