@@ -13,8 +13,12 @@
   justify-content: flex-start;
   align-items: center;
 
-  &:hover .icon {
+  &:hover:not(:disabled) .icon {
     color: var(--color-on-surface);
+  }
+
+  &:disabled {
+    cursor: unset;
   }
 }
 

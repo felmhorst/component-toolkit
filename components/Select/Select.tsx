@@ -13,6 +13,7 @@ export const Select = (props: SelectProps) => {
     const {
         children,
         placeholder,
+        disabled = false,
         ...rest
     } = props;
 
@@ -99,7 +100,8 @@ export const Select = (props: SelectProps) => {
                     onClick={() => setIsOpen(prev => !prev)}
                     aria-haspopup={"listbox"}
                     aria-expanded={isOpen}
-                    aria-controls={listboxId}>
+                    aria-controls={listboxId}
+                    disabled={disabled}>
                     <span className={styles.selected}>
                         {selected ?? placeholder ?? ""}
                     </span>

@@ -22,13 +22,13 @@ export default function Home() {
             <Button theme={"success"}>test</Button>
             <Checkbox/>
             <Switch/>
-            <Select>
+            <Select disabled>
                  <Option value={"option a"}>option a</Option>
                  <Option value={"test"}>test</Option>
                  <Option value={"hello"}>hello</Option>
                  <Option value={"-s"}>-s</Option>
             </Select>
-            <select>
+            <select disabled>
                 <option value={"option a"}>option a</option>
                 <option value={"test"}>test</option>
                 <option value={"hello"}>hello</option>
