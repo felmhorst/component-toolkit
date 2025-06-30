@@ -1,0 +1,68 @@
+@use '../../styles/mixins' as *;
+
+.container {
+  position: relative;
+  width: fit-content;
+}
+
+.button {
+  @include input-base;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  &:hover .icon {
+    color: var(--color-on-surface);
+  }
+}
+
+.selected {
+  flex: 1 1 auto;
+}
+
+.icon {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--color-on-surface-2);
+  transition: color .2s;
+  text-align: center;
+}
+
+.options_container {
+  @include input-base;
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  padding: 4px;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-surface-2);
+  box-shadow: var(--box-shadow-md);
+
+  &[data-open=false] {
+    visibility: hidden;
+  }
+}
+
+.option {
+  margin: 0;
+  background-color: unset;
+  color: unset;
+  border: none;
+  outline: none;
+  font-family: unset;
+  font-size: unset;
+  display: block;
+  width: 100%;
+  padding: 4px;
+  border-radius: var(--border-radius-md);
+  text-align: left;
+  cursor: pointer;
+
+  &[data-hovered=true] {
+    background-color: var(--color-surface);
+  }
+}
