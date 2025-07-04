@@ -1,0 +1,35 @@
+@use '../../styles/mixins' as *;
+
+.container {
+  @include input-base;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 4px;
+
+  &[aria-disabled=true] {
+    opacity: .5;
+    & .button {
+      cursor: default;
+    }
+  }
+}
+
+.button {
+  @include input-base;
+  padding: 4px;
+  background-color: unset;
+  color: var(--color-on-surface-2);
+  cursor: pointer;
+  text-align: center;
+  &[aria-selected=true], &[aria-pressed=true], &[aria-checked=true] {
+    background-color: var(--color-surface-2);
+    color: var(--color-on-surface);
+  }
+
+  &:focus {
+    outline: solid 2px var(--color-primary);
+  }
+}
