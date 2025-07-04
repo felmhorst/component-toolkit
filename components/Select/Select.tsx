@@ -46,10 +46,10 @@ export const Select = (props: SelectProps) => {
     const [search, setSearch] = useState("");
     const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout|null>(null);
 
-    const handleKeyDown = useCallback((e) => {
+    const handleKeyDown = (e) => {
         const hoveredIndex = options.findIndex((option) => option === hovered);
 
-        if (["Enter"].includes(e.key)) {
+        if (["Enter", " "].includes(e.key)) {
             e.preventDefault();
             setSelectedAndClose(hovered);
         } else if (["Escape"].includes(e.key))
@@ -69,7 +69,7 @@ export const Select = (props: SelectProps) => {
                 clearTimeout(searchTimeout);
             setSearchTimeout(timeoutId)
         }
-    }, [options, hovered, searchTimeout, setSelectedAndHovered, setSelectedAndClose]);
+    };
 
     useEffect(() => {
         if (search === "")
@@ -83,7 +83,6 @@ export const Select = (props: SelectProps) => {
         <SelectContext.Provider
             value={{
                 listboxId,
-                options,
                 registerOption,
                 unregisterOption,
                 selected,
@@ -113,7 +112,7 @@ export const Select = (props: SelectProps) => {
                     className={styles.options_container}
                     id={listboxId}
                     role={"listbox"}
-                    aria-activedescendant={`${listboxId}-${selected}`}
+                    aria-activedescendant={`${listboxId}-${hovered}`}
                     data-open={isOpen}>
                     {children}
                 </ul>

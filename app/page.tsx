@@ -7,6 +7,8 @@ import {Checkbox} from "@/components/Checkbox/Checkbox";
 import {Switch} from "@/components/Switch/Switch";
 import {Select} from "@/components/Select/Select";
 import {Option} from "@/components/Select/Option";
+import {ToggleButtonGroup} from "@/components/ToggleButton/ToggleButtonGroup";
+import {ToggleButton} from "@/components/ToggleButton/ToggleButton";
 
 export default function Home() {
     return (
@@ -22,18 +24,20 @@ export default function Home() {
             <Button theme={"success"}>test</Button>
             <Checkbox/>
             <Switch/>
-            <Select disabled>
+            <Select>
                  <Option value={"option a"}>option a</Option>
                  <Option value={"test"}>test</Option>
                  <Option value={"hello"}>hello</Option>
                  <Option value={"-s"}>-s</Option>
             </Select>
-            <select disabled>
-                <option value={"option a"}>option a</option>
-                <option value={"test"}>test</option>
-                <option value={"hello"}>hello</option>
-                <option value={"-s"}>-s</option>
-            </select>
+            <ToggleButtonGroup>
+                <ToggleButton value={"left"}>left</ToggleButton>
+                <ToggleButton value={"right"}>right</ToggleButton>
+            </ToggleButtonGroup>
+            <ToggleButtonGroup multiple>
+                <ToggleButton value={"left"}>left</ToggleButton>
+                <ToggleButton value={"right"}>right</ToggleButton>
+            </ToggleButtonGroup>
         </div>
     );
 }

@@ -1,8 +1,9 @@
+"use client";
+
 import {createContext, useContext} from "react";
 
 export interface SelectContextType {
     listboxId: string;
-    options: string[];
     registerOption: (option: string) => void;
     unregisterOption: (option: string) => void;
     selected: string | null;
@@ -16,6 +17,6 @@ export const SelectContext = createContext<SelectContextType>(null!);
 export const useSelect = () => {
     const context = useContext(SelectContext);
     if (!context)
-        throw new Error("Error: Option should only be used as sa child of Select");
+        throw new Error("Error: Option should only be used as a child of Select");
     return context;
 };
