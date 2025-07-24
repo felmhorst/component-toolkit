@@ -1,0 +1,29 @@
+@use '../../styles/mixins' as *;
+
+$hue-to-top: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+$hue-to-right: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+
+.slider {
+  @include reset-slider;
+  @include input-base;
+  padding: 0;
+  outline-offset: 2px;
+
+  &__orientation_horizontal {
+    @include horizontal-slider;
+    width: 160px;
+    height: 16px;
+    background: $hue-to-right;
+  }
+
+  &__orientation_vertical {
+    @include vertical-slider;
+    width: 16px;
+    height: 160px;
+    background: $hue-to-top;
+  }
+
+  &::-webkit-slider-thumb, &::-moz-range-thumb {
+    @include slider-thumb;
+  }
+}

@@ -1,0 +1,25 @@
+@use '../../styles/mixins' as *;
+
+.slider {
+  @include reset-slider;
+  @include input-base;
+  padding: 0;
+  outline-offset: 2px;
+  background: repeating-conic-gradient(#808080 0 25%, #000000 0 50%) 50% / 20px 20px;
+
+  &__orientation_horizontal {
+    @include horizontal-slider;
+    width: 160px;
+    height: 16px;
+  }
+
+  &__orientation_vertical {
+    @include vertical-slider;
+    width: 16px;
+    height: 160px;
+  }
+
+  &::-webkit-slider-thumb, &::-moz-range-thumb {
+    @include slider-thumb;
+  }
+}

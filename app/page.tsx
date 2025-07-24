@@ -9,6 +9,11 @@ import {Select} from "@/components/Select/Select";
 import {Option} from "@/components/Select/Option";
 import {ToggleButtonGroup} from "@/components/ToggleButton/ToggleButtonGroup";
 import {ToggleButton} from "@/components/ToggleButton/ToggleButton";
+import {HexColorField} from "@/components/HexColorField/HexColorField";
+import {HueSlider} from "@/components/HueSlider/HueSlider";
+import {OpacitySlider} from "@/components/OpacitySlider/OpacitySlider";
+import {ColorSlider2D} from "@/components/ColorSlider2D/ColorSlider2D";
+import {ColorPicker} from "@/components/ColorPicker/ColorPicker";
 
 export default function Home() {
     return (
@@ -38,6 +43,14 @@ export default function Home() {
                 <ToggleButton value={"left"}>left</ToggleButton>
                 <ToggleButton value={"right"}>right</ToggleButton>
             </ToggleButtonGroup>
+
+            <h2>Color</h2>
+            <HexColorField
+                defaultValue={'#ff0000'}/>
+            <HueSlider orientation={"horizontal"}/>
+            <OpacitySlider orientation={"horizontal"}/>
+
+            <ColorPicker/>
         </div>
     );
 }

@@ -30,3 +30,36 @@
   opacity: 0;
   pointer-events: none;
 }
+
+@mixin reset-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+
+  &::-webkit-slider-thumb, &::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+@mixin horizontal-slider {
+  writing-mode: horizontal-tb;
+  direction: ltr;
+}
+
+@mixin vertical-slider {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  vertical-align: bottom;
+  appearance: slider-vertical;
+}
+
+@mixin slider-thumb {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: solid 2px var(--color-on-surface);
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: rgba(#000, 0.4) 0 0 1px inset, rgba(#000, 0.6) 0 0 2px;
+}

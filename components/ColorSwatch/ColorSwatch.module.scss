@@ -1,0 +1,9 @@
+@use '../../styles/mixins' as *;
+
+.button {
+  @include input-base;
+  display: block;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}

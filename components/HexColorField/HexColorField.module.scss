@@ -1,0 +1,9 @@
+@use '../../styles/mixins' as *;
+
+.field {
+  @include input-base;
+
+  &:invalid {
+    outline: solid 2px var(--color-danger);
+  }
+}
