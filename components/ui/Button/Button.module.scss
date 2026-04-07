@@ -1,0 +1,84 @@
+.button {
+  display: block;
+  padding: 6px;
+  background-color: unset;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  font-size: unset;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: .8;
+  transition:
+          opacity .2s,
+          background-color .2s,
+          color .2s;
+  outline-offset: 2px;
+
+  &:hover, &:focus-visible {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: 2px;
+  }
+
+  &__color {
+    &-primary {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      outline-color: var(--color-primary);
+      color: var(--color-on-primary);
+
+      &:hover, &:focus-visible {
+        background-color: var(--color-primary);
+        color: var(--color-on-primary);
+      }
+    }
+
+    &-warning {
+      background-color: var(--color-warning);
+      border-color: var(--color-warning);
+      outline-color: var(--color-warning);
+      color: var(--color-on-warning);
+
+      &:hover, &:focus-visible {
+        background-color: var(--color-warning);
+        color: var(--color-on-warning);
+      }
+    }
+
+    &-danger {
+      background-color: var(--color-danger);
+      border-color: var(--color-danger);
+      outline-color: var(--color-danger);
+      color: var(--color-on-danger);
+
+      &:hover, &:focus-visible {
+        background-color: var(--color-danger);
+        color: var(--color-on-danger);
+      }
+    }
+
+    &-success {
+      background-color: var(--color-success);
+      border-color: var(--color-success);
+      outline-color: var(--color-success);
+      color: var(--color-on-success);
+
+      &:hover, &:focus-visible {
+        background-color: var(--color-success);
+        color: var(--color-on-success);
+      }
+    }
+  }
+
+  &__theme {
+    &-secondary {
+      background-color: transparent;
+      color: var(--color-on-surface);
+    }
+  }
+}

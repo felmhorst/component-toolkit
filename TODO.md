@@ -1,0 +1,4 @@
+- [ ] Select: make accessible via tab + space
+- [ ] ColorSlider2D: cannot control slider via keys
+- [ ] ColorPicker: popup position does not update on window resize
+- [ ] ColorPicker: cannot close popup with click outside

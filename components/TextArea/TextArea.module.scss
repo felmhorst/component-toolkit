@@ -1,7 +1,0 @@
-@use '../../styles/mixins' as *;
-
-.field {
-  @include input-base;
-  height: auto;
-  resize: none;
-}

@@ -1,19 +1,19 @@
 import styles from "./page.module.css";
-import {TextField} from "@/components/TextField/TextField";
-import {TextArea} from "@/components/TextArea/TextArea";
-import {PasswordField} from "@/components/PasswordField/PasswordField";
-import {Button} from "@/components/Button/Button";
-import {Checkbox} from "@/components/Checkbox/Checkbox";
-import {Switch} from "@/components/Switch/Switch";
-import {Select} from "@/components/Select/Select";
-import {Option} from "@/components/Select/Option";
-import {ToggleButtonGroup} from "@/components/ToggleButton/ToggleButtonGroup";
-import {ToggleButton} from "@/components/ToggleButton/ToggleButton";
-import {HexColorField} from "@/components/HexColorField/HexColorField";
-import {HueSlider} from "@/components/HueSlider/HueSlider";
-import {OpacitySlider} from "@/components/OpacitySlider/OpacitySlider";
-import {ColorSlider2D} from "@/components/ColorSlider2D/ColorSlider2D";
-import {ColorPicker} from "@/components/ColorPicker/ColorPicker";
+import {TextField} from "@/components/ui/TextField/TextField";
+import {TextArea} from "@/components/ui/TextArea/TextArea";
+import {PasswordField} from "@/components/ui/PasswordField/PasswordField";
+import {Button} from "@/components/ui/Button/Button";
+import {Checkbox} from "@/components/ui/Checkbox/Checkbox";
+import {Switch} from "@/components/ui/Switch/Switch";
+import {Select} from "@/components/ui/Select/Select";
+import {Option} from "@/components/ui/Select/Option";
+import {ToggleButtonGroup} from "@/components/ui/ToggleButton/ToggleButtonGroup";
+import {ToggleButton} from "@/components/ui/ToggleButton/ToggleButton";
+import {HexColorField} from "@/components/ui/HexColorField/HexColorField";
+import {HueSlider} from "@/components/ui/HueSlider/HueSlider";
+import {OpacitySlider} from "@/components/ui/OpacitySlider/OpacitySlider";
+import {ColorSlider2D} from "@/components/ui/ColorSlider2D/ColorSlider2D";
+import {ColorPicker} from "@/components/ui/ColorPicker/ColorPicker";
 
 export default function Home() {
     return (
