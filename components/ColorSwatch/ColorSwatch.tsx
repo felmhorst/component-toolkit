@@ -1,11 +1,13 @@
-import styles from "./ColorSwatch.module.css";
-import React from "react";
+"use client";
 
-interface ColorSwatch extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import styles from "./ColorSwatch.module.css";
+import React, {forwardRef} from "react";
+
+interface ColorSwatchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color?: "string";
 }
 
-export const ColorSwatch = (props: ColorSwatch) => {
+export const ColorSwatch = forwardRef<HTMLButtonElement, ColorSwatchProps>((props, ref) => {
     const {
         color,
         ...rest
@@ -14,7 +16,8 @@ export const ColorSwatch = (props: ColorSwatch) => {
     return (
         <button
             {...rest}
+            ref={ref}
             className={styles.button}
             style={{backgroundColor: color}}/>
     );
-};
+});

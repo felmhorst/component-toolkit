@@ -1,7 +1,7 @@
 "use client";
 
 import {ColorPickerPopover, ColorPickerPopoverHandle} from "@/components/ColorPicker/ColorPickerPopover";
-import {useRef} from "react";
+import {useCallback, useRef} from "react";
 import {ColorSwatch} from "@/components/ColorSwatch/ColorSwatch";
 
 
@@ -10,18 +10,27 @@ interface ColorPickerProps {
 }
 
 export const ColorPicker = (props: ColorPickerProps) => {
-    const {} = props;
-    const ref = useRef<ColorPickerPopoverHandle>(null!);
+    const {
+        value
+    } = props;
+    const swatchRef = useRef<HTMLButtonElement>(null!);
+    const popoverRef = useRef<ColorPickerPopoverHandle>(null!);
+
+    const openPopover = useCallback(() => {
+        const swatchRect = swatchRef.current.getBoundingClientRect();
+        const x = swatchRect.x + swatchRect.width / 2;
+        const y = swatchRect.y;
+        popoverRef.current.open(x, y);
+    }, []);
 
     return (
-        <>
+        <div>
             <ColorSwatch
+                ref={swatchRef}
                 color={'#ff0000'}
-                onClick={() => ref.current.isOpen
-                    ? ref.current.close()
-                    : ref.current.open()}/>
+                onClick={openPopover}/>
             <ColorPickerPopover
-                ref={ref}/>
-        </>
+                ref={popoverRef}/>
+        </div>
     );
 };
