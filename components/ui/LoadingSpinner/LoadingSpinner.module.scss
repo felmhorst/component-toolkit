@@ -1,0 +1,27 @@
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: solid 3px var(--color-primary);
+  border-right-color: transparent;
+  display: inline-block;
+  animation: spin 1s forwards linear infinite;
+
+  &--size {
+    &-sm {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-width: 2px;
+    }
+    &-md {
+      width: 3rem;
+      height: 3rem;
+      border-width: 3px;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {transform: rotate(0)}
+  100% {transform: rotate(360deg)}
+}

@@ -1,22 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import {Heading} from './Heading';
+import {Nav} from './Nav';
 
 const meta = {
-    title: 'UI/Heading',
-    component: Heading,
+    title: 'Layout/Nav',
+    component: Nav,
     parameters: {
         layout: 'centered',
     },
     tags: ['autodocs'],
-    argTypes: {
-        children: {
-            control: "text",
-        }
-    },
-    args: {
-        children: "Hello, World!"
-    },
-} satisfies Meta<typeof Heading>;
+} satisfies Meta<typeof Nav>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
