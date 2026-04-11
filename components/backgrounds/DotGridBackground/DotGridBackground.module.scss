@@ -1,0 +1,13 @@
+.grid {
+  --grid-color: rgb(from var(--color-on-surface) r g b / 0.12);
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  align-self: stretch;
+  background-size: 40px 40px;
+  background-repeat: repeat;
+  background-image:
+          radial-gradient(circle, var(--grid-color) 1px, transparent 1px);
+}

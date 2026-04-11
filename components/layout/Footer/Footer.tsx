@@ -4,11 +4,14 @@ import Link from "next/link";
 export const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <span>Test</span>
+            <span>Florian Elmhorst © 2026</span>
 
-            <div>
+            <div className={styles.links}>
                 <Link href={"/imprint"}>
                     Imprint
+                </Link>
+                <Link href={"/privacy"}>
+                    Privacy
                 </Link>
             </div>
         </footer>
