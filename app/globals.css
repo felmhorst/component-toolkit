@@ -18,6 +18,7 @@
   --color-on-danger: #FFFFFF;
 
   --border-radius-md: 4px;
+  --border-radius-lg: 8px;
   --box-shadow-md: 0 6px 12px rgba(0, 0, 0, .15);
 
   /* overridden by Next.js in layout.tsx */
