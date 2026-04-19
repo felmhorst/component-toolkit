@@ -6,6 +6,7 @@
   --color-on-surface: #E2E2E2;
   --color-on-surface-2: #989898;
 
+
   --color-primary: #5F26D2;
   --color-on-primary: #FFFFFF;
 
@@ -23,6 +24,7 @@
   --border-radius-lg: 8px;
 
   // spacing
+  --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 32px;
@@ -61,6 +63,10 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+button {
+  font-size: unset;
 }
 
 a {
