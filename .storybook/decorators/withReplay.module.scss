@@ -1,0 +1,13 @@
+.button {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  padding: 0.5rem;
+  border: none;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  color: var(--color-on-surface);
+}

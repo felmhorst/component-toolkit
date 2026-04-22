@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Slide } from "./Slide";
 import {Card} from "@/components/ui/Card/Card";
+import {withReplay} from "@/.storybook/decorators/withReplay";
 
 const meta = {
   title: "Animations/Slide",
@@ -21,6 +22,7 @@ const meta = {
       description: "The direction of the slide animation.",
     }
   },
+  decorators: [withReplay],
   tags: ["autodocs"],
 } satisfies Meta<typeof Slide>;
 

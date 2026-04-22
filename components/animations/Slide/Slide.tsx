@@ -6,10 +6,10 @@ import {Variants} from "motion";
 const getVariants = (direction: Direction): Variants => {
     const offset = 100;
     const offscreen = {
-        left:  { x: -offset, y: 0 },
-        right: { x:  offset, y: 0 },
-        up:    { x: 0, y: -offset },
-        down:  { x: 0, y:  offset },
+        left:  { x: offset, y: 0 },
+        right: { x:  -offset, y: 0 },
+        up:    { x: 0, y: offset },
+        down:  { x: 0, y:  -offset },
     }[direction];
 
     return {
