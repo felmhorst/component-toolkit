@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Slide } from "./Slide";
+import {Card} from "@/components/ui/Card/Card";
 
 const meta = {
   title: "Animations/Slide",
@@ -8,7 +9,17 @@ const meta = {
     layout: "centered",
   },
   args: {
-    children: <h1>test</h1>,
+    children: (
+        <Card>
+          <h1>test</h1>
+        </Card>),
+  },
+  argTypes: {
+    direction: {
+      options: ["left", "right", "up", "down"],
+      control: { type: "select" },
+      description: "The direction of the slide animation.",
+    }
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof Slide>;
