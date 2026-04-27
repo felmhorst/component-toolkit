@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import React, {PropsWithChildren} from "react";
 import {Direction} from "@/utility/types";
 import {Variants} from "motion";
+import styles from "./Slide.module.css";
 
 const getVariants = (direction: Direction): Variants => {
     const offset = 100;
@@ -21,21 +22,27 @@ const getVariants = (direction: Direction): Variants => {
 
 interface SlideProps extends PropsWithChildren {
     direction?: Direction;
+    tag?: keyof typeof motion;
+    asChild?: boolean;
 }
 
 export const Slide: React.FC<SlideProps> = ({
     children,
-    direction = Direction.RIGHT,
+    tag = "div",
+    direction = Direction.UP,
+    asChild = false,
 }) => {
-    const variants = getVariants(direction);
+
+    const MotionTag = motion[tag] as typeof motion.div; // workaround for TS2589
 
     return (
-        <motion.div
-            variants={variants}
-            initial="initial"
-            animate="animate"
-            exit="exit">
+        <MotionTag
+            className={styles.slide}
+            variants={getVariants(direction)}
+            initial={asChild ? undefined : "initial"}
+            animate={asChild ? undefined : "animate"}
+            exit={asChild ? undefined : "exit"}>
             {children}
-        </motion.div>
+        </MotionTag>
     );
 };
