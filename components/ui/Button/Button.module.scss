@@ -13,11 +13,16 @@
   transition:
           opacity .2s,
           background-color .2s,
-          color .2s;
+          color .2s,
+          transform .1s;
   outline-offset: 2px;
 
   &:hover, &:focus-visible {
     opacity: 1;
+  }
+
+  &:active {
+    transform: scale(.95);
   }
 
   &:focus-visible {
