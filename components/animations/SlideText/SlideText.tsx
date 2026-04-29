@@ -47,7 +47,7 @@ export const SlideText: React.FC<SlideTextProps> = ({
             {splitText(text, split).map((chunk, index) => (
                 chunk === "\n"
                     ? <br key={index} />
-                    : <>
+                    : <React.Fragment key={index}>
                         <Slide
                             key={index}
                             direction={direction}
@@ -56,24 +56,9 @@ export const SlideText: React.FC<SlideTextProps> = ({
                             {chunk}
                         </Slide>
                         {split === "line" && <br />}
-                    </>
+                    </React.Fragment>
 
             ))}
         </motion.span>
     );
 };
-
-interface SlideChunkProps {
-    chunk: string;
-}
-/*
-export const SlideChunk: React.FC<SlideChunkProps> = ({
-    chunk
-}) => {
-    if (chunk === "\n")
-        return <br />;
-
-    return (
-
-    );
-}*/
