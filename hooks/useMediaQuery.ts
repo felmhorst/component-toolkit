@@ -3,7 +3,7 @@ import { useSyncExternalStore } from "react";
 /*
  * checks a media query
  */
-function useMediaQuery(query: string): boolean {
+export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
     (onChange) => {
       const mediaQueryList = window.matchMedia(query);
