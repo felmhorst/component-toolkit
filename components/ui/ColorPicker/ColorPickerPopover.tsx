@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./ColorPickerPopover.module.css";
-import {ColorSlider2D} from "@/components/ui/ColorSlider2D/ColorSlider2D";
-import {HueSlider} from "@/components/ui/HueSlider/HueSlider";
-import {OpacitySlider} from "@/components/ui/OpacitySlider/OpacitySlider";
+import {ColorSlider2D} from "@/components/ui/ColorSlider2D";
+import {HueSlider} from "@/components/ui/HueSlider";
+import {OpacitySlider} from "@/components/ui/OpacitySlider";
 import {forwardRef, useCallback, useImperativeHandle, useRef, useState} from "react";
 
 interface ColorPickerPopoverProps {

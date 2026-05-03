@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {Cursor} from './Cursor';
-import {Button} from "@/components/ui/Button/Button";
+import {Button} from "@/components/ui/Button";
 
 const meta = {
     title: 'Animations/Cursor',

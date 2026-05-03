@@ -26,5 +26,5 @@ This is just a passion project  If you're looking for a reliable package of inpu
 - Select
 - Checkbox
 - Switch
-- Button
-- Toggle Button
+- Index
+- Toggle Index
