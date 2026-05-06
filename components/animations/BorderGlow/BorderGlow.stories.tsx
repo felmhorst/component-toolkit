@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {BorderGlow} from './BorderGlow';
-import {Card} from "@/components/ui/Card/Card";
+import {Card} from "@/components/ui/Card";
 
 const meta = {
     title: 'Animations/BorderGlow',

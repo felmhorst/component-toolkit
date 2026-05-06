@@ -2,7 +2,6 @@ import styles from "./Sidebar.module.css";
 import Link from "next/link";
 import React, {useState} from "react";
 import {ArrowLeftToLine, ArrowRightFromLineIcon, BookIcon, HouseIcon, LucideIcon, UserIcon} from "lucide-react";
-import {bool} from "@emnapi/runtime";
 
 export const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);

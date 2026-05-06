@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { SlideText } from "./SlideText";
-import {Card} from "@/components/ui/Card/Card";
+import {Card} from "@/components/ui/Card";
 import {withReplay} from "@/.storybook/decorators/withReplay";
 
 const meta = {
