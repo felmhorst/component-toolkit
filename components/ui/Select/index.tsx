@@ -2,8 +2,7 @@
 
 import React, {useCallback, useEffect, useId, useState} from "react";
 import styles from "./index.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
+import {ChevronDown} from "lucide-react";
 import {SelectContext} from "@/components/ui/Select/SelectContext";
 import {isCharacterKey} from "@/utility/isCharacterKey";
 
@@ -105,7 +104,7 @@ export const Select = (props: SelectProps) => {
                         {selected ?? placeholder ?? ""}
                     </span>
                     <div className={styles.icon}>
-                        <FontAwesomeIcon icon={faChevronDown}/>
+                        <ChevronDown/>
                     </div>
                 </button>
                 <ul

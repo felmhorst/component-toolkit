@@ -8,61 +8,82 @@ interface ColorSlider2DProps {
     hue?: number;
 }
 
-export const ColorSlider2D = (props) => {
+export const ColorSlider2D = (props: ColorSlider2DProps) => {
     const {
         hue = 0,
     } = props;
     const areaRef = useRef<HTMLDivElement>(null!);
-    const handleRef = useRef<HTMLDivElement>(null!);
     const [isDragging, setIsDragging] = useState<boolean>(false);
+    const [saturation, setSaturation] = useState<number>(0);
+    const [brightness, setBrightness] = useState<number>(100);
 
     const hsl = `hsl(${hue} 100% 50%)`;
 
+    const updateFromMouseEvent = (e: MouseEvent) => {
+        const rect = areaRef.current.getBoundingClientRect();
+        setSaturation(Math.round(clamp((e.clientX - rect.x) / rect.width, 0, 1) * 100));
+        setBrightness(Math.round((1 - clamp((e.clientY - rect.y) / rect.height, 0, 1)) * 100));
+    };
+
     useEffect(() => {
         const area = areaRef.current;
-        const handle = handleRef.current;
-        if (!handle || !area) return;
+        if (!area) return;
 
-        const updateHandlePosition = (e: MouseEvent) => {
-            const boundingRect = area?.getBoundingClientRect();
-            const pos = {
-                x: clamp(e.clientX - boundingRect.x, 0, boundingRect.width),
-                y: clamp(e.clientY - boundingRect.y, 0, boundingRect.height),
-            };
-            handle.style.left = `${pos.x}px`;
-            handle.style.top = `${pos.y}px`;
-        };
         const drag = (e: MouseEvent) => {
-            if (isDragging) updateHandlePosition(e);
-        }
+            if (isDragging) updateFromMouseEvent(e);
+        };
         const startDragging = (e: MouseEvent) => {
-            updateHandlePosition(e);
+            updateFromMouseEvent(e);
             setIsDragging(true);
         };
         const stopDragging = () => {
             setIsDragging(false);
         };
-        area?.addEventListener('mousedown', startDragging);
+        area.addEventListener('mousedown', startDragging);
         window.addEventListener('mousemove', drag);
-        window.addEventListener('mouseup', stopDragging)
+        window.addEventListener('mouseup', stopDragging);
         return () => {
-            area?.removeEventListener('mousedown', startDragging);
+            area.removeEventListener('mousedown', startDragging);
             window.removeEventListener('mousemove', drag);
             window.removeEventListener('mouseup', stopDragging);
-        }
+        };
     }, [isDragging]);
 
-    // todo: role, aria-roledescription, aria-valuetext
-    // todo: ArrowsKeys, Shift + ArrowKeys, PageUp/Down, Start/End
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        const step = e.shiftKey ? 10 : 1;
+        let s = saturation, b = brightness;
+        switch (e.key) {
+            case 'ArrowRight': s = clamp(s + step, 0, 100); break;
+            case 'ArrowLeft':  s = clamp(s - step, 0, 100); break;
+            case 'ArrowUp':    b = clamp(b + step, 0, 100); break;
+            case 'ArrowDown':  b = clamp(b - step, 0, 100); break;
+            case 'Home':       s = 0;   break;
+            case 'End':        s = 100; break;
+            case 'PageUp':     b = 100; break;
+            case 'PageDown':   b = 0;   break;
+            default: return;
+        }
+        e.preventDefault();
+        setSaturation(s);
+        setBrightness(b);
+    };
 
     return (
         <div
             ref={areaRef}
             className={styles.area}
-            style={{backgroundColor: hsl}}>
+            style={{backgroundColor: hsl}}
+            tabIndex={0}
+            role="application"
+            aria-label="Color area"
+            aria-valuetext={`Saturation ${saturation}%, Brightness ${brightness}%`}
+            onKeyDown={handleKeyDown}>
             <div
-                ref={handleRef}
-                className={styles.handle}/>
+                className={styles.handle}
+                style={{
+                    left: `${saturation}%`,
+                    top: `${100 - brightness}%`,
+                }}/>
         </div>
     );
 };

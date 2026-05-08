@@ -50,3 +50,6 @@ storybook-static
 # css
 *.css.map
 *.css
+
+# AI
+settings.local.json

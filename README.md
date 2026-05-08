@@ -1,30 +1,44 @@
-# Component Toolkit
+# Next.js Component Toolkit
 
-Although HTML already provides a large variety of input components, some of them are very inconsistent across different
-browsers and operating systems and provide only limited customization. Building your own components can be difficult,
-especially when considering accessibility needs, internationalization, and required keyboard and touch controls.
+A Next.js component toolkit and boilerplate for building modern web applications. Includes UI primitives, layout components, animation utilities, and background effects — all written in TypeScript with Storybook documentation and Vitest tests.
 
-To improve my skills and save some time when developing my next app, I decided to create a toolkit of commonly used,
-reusable, accessible, and entirely customizable components.
+## Tech Stack
 
-This is just a passion project  If you're looking for a reliable package of input components I recommend
-[React Aria](https://react-spectrum.adobe.com/react-aria/index.html)
+- **Framework:** Next.js 16, React 19
+- **Language:** TypeScript
+- **Animation:** Framer Motion
+- **Icons:** Lucide React
+- **Testing:** Vitest, Testing Library
+- **Docs:** Storybook
 
-## Components
+## Getting Started
 
-### Text Fields
-- Text Field
-- Text Area
-- Password Field
+```bash
+npm ci            # install dependencies
+npm run dev       # development server at http://localhost:3000
+npm run storybook # component explorer at http://localhost:6006
+npm run test      # run tests
+```
 
-### Color
-- Hex Color Field
-- Color Swatch
-- Color Picker
+## Project Structure
 
-### Other
-- Select
-- Checkbox
-- Switch
-- Index
-- Toggle Index
+```
+├── app/             # pages
+├── components/
+│   ├── animations/  # motion-based animation wrappers
+│   ├── backgrounds/ # decorative background patterns
+│   ├── layout/      # structural page components
+│   └── ui/          # generic UI primitives
+├── hooks/           # shared custom React hooks
+├── utility/         # pure helper functions
+└── styles/          # global styles
+```
+
+Each component has the following structure:
+```
+└── Button/
+    ├── index.tsx          # component implementation
+    ├── index.module.scss  # component styles
+    ├── index.stories.tsx  # Storybook
+    └── index.test.tsx     # unit tests
+```

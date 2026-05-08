@@ -2,8 +2,7 @@
 
 import React, {useState} from "react";
 import styles from "./index.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import {Eye, EyeOff} from "lucide-react";
 
 export const PasswordField = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     const {className, ...rest} = props;
@@ -20,9 +19,11 @@ export const PasswordField = (props: React.InputHTMLAttributes<HTMLInputElement>
                 className={`${styles.field} ${className}`}
                 type={isVisible ? 'text' : 'password'}/>
             <button
+                type="button"
                 className={styles.visibilityButton}
+                aria-label={isVisible ? "Hide password" : "Show password"}
                 onClick={toggleVisibility}>
-                <FontAwesomeIcon icon={isVisible ? faEyeSlash : faEye}/>
+                {isVisible ? <EyeOff aria-hidden={true}/> : <Eye aria-hidden={true}/>}
             </button>
         </div>
     );

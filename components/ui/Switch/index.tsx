@@ -12,7 +12,8 @@ export const Switch = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
             <input
                 {...rest}
                 className={styles.input}
-                type={'checkbox'}/>
+                type={'checkbox'}
+                role="switch"/>
             <div className={styles.switch}>
                 <span className={styles.slider}/>
             </div>

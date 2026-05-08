@@ -1,0 +1,76 @@
+@use '../../../styles/mixins' as *;
+
+.slider {
+  @include reset-slider;
+  @include input-base;
+  padding: 0;
+  width: auto;
+  outline-offset: 2px;
+  background: transparent;
+
+  &__orientation_horizontal {
+    @include horizontal-slider;
+    width: 160px;
+    height: 16px;
+
+    &::-webkit-slider-runnable-track {
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(
+        to right,
+        var(--color-primary) 0%,
+        var(--color-primary) var(--fill),
+        var(--color-background) var(--fill),
+        var(--color-background) 100%
+      );
+    }
+
+    &::-moz-range-track {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-background);
+    }
+
+    &::-moz-range-progress {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-primary);
+    }
+  }
+
+  &__orientation_vertical {
+    @include vertical-slider;
+    width: 16px;
+    height: 160px;
+
+    &::-webkit-slider-runnable-track {
+      width: 4px;
+      border-radius: 2px;
+      // to top matches the physical direction: min=bottom, max=top
+      background: linear-gradient(
+        to top,
+        var(--color-primary) 0%,
+        var(--color-primary) var(--fill),
+        var(--color-background) var(--fill),
+        var(--color-background) 100%
+      );
+    }
+
+    &::-moz-range-track {
+      width: 4px;
+      border-radius: 2px;
+      background: var(--color-background);
+    }
+
+    &::-moz-range-progress {
+      width: 4px;
+      border-radius: 2px;
+      background: var(--color-primary);
+    }
+  }
+
+  &::-webkit-slider-thumb,
+  &::-moz-range-thumb {
+    @include slider-thumb;
+  }
+}
