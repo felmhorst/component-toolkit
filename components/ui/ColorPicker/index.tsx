@@ -1,6 +1,7 @@
 "use client";
 
-import {ColorPickerPopover, ColorPickerPopoverHandle} from "@/components/ui/ColorPicker/ColorPickerPopover";
+import type { ColorPickerPopoverHandle} from "@/components/ui/ColorPicker/ColorPickerPopover";
+import {ColorPickerPopover} from "@/components/ui/ColorPicker/ColorPickerPopover";
 import {useCallback, useRef} from "react";
 import {ColorSwatch} from "@/components/ui/ColorSwatch";
 

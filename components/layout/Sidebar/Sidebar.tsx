@@ -1,7 +1,8 @@
 import styles from "./Sidebar.module.css";
 import Link from "next/link";
 import React, {useState} from "react";
-import {ArrowLeftToLine, ArrowRightFromLineIcon, BookIcon, HouseIcon, LucideIcon, UserIcon} from "lucide-react";
+import type { LucideIcon} from "lucide-react";
+import {ArrowLeftToLine, ArrowRightFromLineIcon, BookIcon, HouseIcon, UserIcon} from "lucide-react";
 
 export const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);

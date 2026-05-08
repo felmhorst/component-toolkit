@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import React, {PropsWithChildren} from "react";
+import type {PropsWithChildren} from "react";
+import React from "react";
 import {Direction} from "@/utility/types";
-import {Variants} from "motion";
+import type {Variants} from "motion";
 import styles from "./Slide.module.css";
 
 const getVariants = (direction: Direction): Variants => {

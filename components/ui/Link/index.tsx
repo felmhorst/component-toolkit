@@ -1,5 +1,6 @@
 import React from "react";
-import NextLink, {LinkProps as NextLinkProps} from "next/link";
+import type {LinkProps as NextLinkProps} from "next/link";
+import NextLink from "next/link";
 import styles from "./index.module.css";
 
 export interface LinkProps extends NextLinkProps  {

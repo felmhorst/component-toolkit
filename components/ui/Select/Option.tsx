@@ -1,6 +1,7 @@
 "use client";
 
-import React, {PropsWithChildren, useCallback, useEffect, useRef} from "react";
+import type {PropsWithChildren} from "react";
+import React, { useCallback, useEffect, useRef} from "react";
 import styles from "./index.module.css";
 import {useSelect} from "@/components/ui/Select/SelectContext";
 import {useHover} from "@/hooks/useHover";

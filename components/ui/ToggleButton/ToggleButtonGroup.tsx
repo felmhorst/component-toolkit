@@ -1,6 +1,7 @@
 "use client";
 
-import React, {PropsWithChildren, useCallback, useId, useState} from "react";
+import type {PropsWithChildren} from "react";
+import React, { useCallback, useId, useState} from "react";
 import {ToggleButtonGroupContext} from "@/components/ui/ToggleButton/ToggleButtonGroupContext";
 import styles from "./ToggleButtonGroup.module.css";
 
