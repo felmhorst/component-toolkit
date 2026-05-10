@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import {TextArea} from './index';
+import { TextArea } from './index';
+import { Field } from '../Field';
 
 const meta = {
     title: 'UI/TextArea',
@@ -24,4 +25,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {},
+};
+
+export const WithField: Story = {
+    render: () => (
+        <Field label="Bio" hint="Tell us a little about yourself">
+            <TextArea placeholder="I'm a developer who..." />
+        </Field>
+    ),
+};
+
+export const WithFieldError: Story = {
+    render: () => (
+        <Field label="Bio" isRequired error="Bio cannot be empty">
+            <TextArea placeholder="I'm a developer who..." />
+        </Field>
+    ),
 };

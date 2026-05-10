@@ -12,6 +12,7 @@ export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (
         children,
         placeholder,
         disabled = false,
+        id,
     } = props;
 
     const [options, setOptions] = useState<string[]>([]);
@@ -103,6 +104,7 @@ export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (
                 onBlur={closeOptions}
                 onKeyDown={handleKeyDown}>
                 <button
+                    id={id}
                     className={styles.button}
                     onClick={() => setIsOpen(prev => !prev)}
                     aria-haspopup={"listbox"}

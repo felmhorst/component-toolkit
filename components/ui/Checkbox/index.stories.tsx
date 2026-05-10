@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import {Checkbox} from './index';
+import { Checkbox } from './index';
+import { Field } from '../Field';
 
 const meta = {
     title: 'UI/Checkbox',
@@ -17,4 +18,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {},
+};
+
+export const WithField: Story = {
+    render: () => (
+        <Field label="Accept terms" hint="You must accept the terms to continue">
+            <Checkbox />
+        </Field>
+    ),
+};
+
+export const WithFieldError: Story = {
+    render: () => (
+        <Field label="Accept terms" isRequired error="You must accept the terms">
+            <Checkbox />
+        </Field>
+    ),
 };
