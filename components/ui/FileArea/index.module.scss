@@ -1,0 +1,57 @@
+@use '../../../styles/mixins' as *;
+
+.dropZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 32px 24px;
+  border: 2px dashed var(--color-on-surface-2);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+  min-width: 280px;
+  user-select: none;
+
+  &:focus-visible {
+    outline: solid 2px var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.dragOver {
+  border-color: var(--color-primary);
+  border-style: solid;
+  background-color: oklch(from var(--color-primary) l c h / 8%);
+}
+
+.hasError {
+  border-color: var(--color-danger);
+  border-style: solid;
+}
+
+.hiddenInput {
+  @include hide-preserve-focus;
+}
+
+.icon {
+  color: var(--color-on-surface-2);
+  transition: color .2s;
+}
+
+.dragOver .icon {
+  color: var(--color-primary);
+}
+
+.instruction {
+  font-size: 0.875rem;
+  color: var(--color-on-surface-2);
+}
+
+.error {
+  font-size: 0.75rem;
+  color: var(--color-danger);
+}

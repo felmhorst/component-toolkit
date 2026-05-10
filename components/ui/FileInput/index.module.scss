@@ -1,0 +1,55 @@
+@use '../../../styles/mixins' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.hiddenInput {
+  @include hide-preserve-focus;
+}
+
+.triggerButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 6px 12px;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-md);
+  background-color: transparent;
+  color: var(--color-on-surface);
+  font-size: unset;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  &:focus-visible {
+    outline: solid 2px var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}
+
+.fileName {
+  color: var(--color-on-surface);
+  font-size: 0.875rem;
+}
+
+.error {
+  width: 100%;
+  color: var(--color-danger);
+  font-size: 0.75rem;
+}

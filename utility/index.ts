@@ -1,4 +1,6 @@
 export { clamp } from './clamp';
+export * from './fileUtils';
+export { formatDate } from './formatDate';
 export { Easing } from './easing';
 export { getClosestInteractiveParent } from './getClosestInteractiveParent';
 export { isCharacterKey } from './isCharacterKey';

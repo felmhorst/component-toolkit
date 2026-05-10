@@ -1,5 +1,7 @@
 export { Button } from './Button';
 export { Field } from './Field';
+export { FileArea } from './FileArea';
+export { FileInput } from './FileInput';
 export { Card } from './Card';
 export { Checkbox } from './Checkbox';
 export { Chip } from './Chip';
