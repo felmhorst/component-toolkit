@@ -21,3 +21,5 @@ export const ColorSwatch = forwardRef<HTMLButtonElement, ColorSwatchProps>((prop
             style={{backgroundColor: color}}/>
     );
 });
+
+ColorSwatch.displayName = "ColorSwatch";

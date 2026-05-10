@@ -2,11 +2,7 @@
 import styles from "./index.module.css";
 import React from "react";
 
-interface HexColorFieldProps extends React.InputHTMLAttributes<HTMLInputElement>{
-
-}
-
-export const HexColorField = (props: HexColorFieldProps) => {
+export const HexColorField: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = (props) => {
     const {
         className,
         ...rest

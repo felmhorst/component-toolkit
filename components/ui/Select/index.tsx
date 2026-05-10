@@ -1,25 +1,23 @@
 "use client";
 
-import React, {useCallback, useEffect, useId, useState} from "react";
+import React, { useCallback, useId, useRef, useState } from "react";
 import styles from "./index.module.css";
-import {ChevronDown} from "lucide-react";
-import {SelectContext} from "@/components/ui/Select/SelectContext";
-import {isCharacterKey} from "@/utility/isCharacterKey";
+import { ChevronDown } from "lucide-react";
+import { SelectContext } from "@/components/ui/Select/SelectContext";
+import { isCharacterKey } from "@/utility/isCharacterKey";
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
-export const Select = (props: SelectProps) => {
+export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (props) => {
     const {
         children,
         placeholder,
         disabled = false,
-        ...rest
     } = props;
 
     const [options, setOptions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [hovered, setHovered] = useState<string|null>(null);
-    const [selected, setSelected] = useState<string|null>(null);
+    const [hovered, setHovered] = useState<string | null>(null);
+    const [selected, setSelected] = useState<string | null>(null);
     const listboxId = useId();
 
     const closeOptions = useCallback(() => setIsOpen(false), []);
@@ -43,40 +41,51 @@ export const Select = (props: SelectProps) => {
     }, []);
 
     const [search, setSearch] = useState("");
-    const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout|null>(null);
+    const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    const handleKeyDown = (e) => {
-        const hoveredIndex = options.findIndex((option) => option === hovered);
+    // Derive the highlighted option from the search string during render.
+    // This avoids calling setState inside a useEffect, which triggers cascading renders.
+    const searchMatch = search !== "" ? options.find(o => o.startsWith(search)) ?? null : null;
+    const effectiveHovered = searchMatch ?? hovered;
+
+    const cancelAndClearSearch = () => {
+        if (searchTimeoutRef.current !== null) {
+            clearTimeout(searchTimeoutRef.current);
+            searchTimeoutRef.current = null;
+        }
+        setSearch("");
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        const effectiveHoveredIndex = options.findIndex(o => o === effectiveHovered);
 
         if (["Enter", " "].includes(e.key)) {
             e.preventDefault();
-            setSelectedAndClose(hovered);
-        } else if (["Escape"].includes(e.key))
+            setSelectedAndClose(effectiveHovered);
+        } else if (e.key === "Escape") {
             setIsOpen(false);
-        else if (["Home"].includes(e.key))
+        } else if (e.key === "Home") {
+            cancelAndClearSearch();
             setSelectedAndHovered(options[0]);
-        else if (["End"].includes(e.key))
+        } else if (e.key === "End") {
+            cancelAndClearSearch();
             setSelectedAndHovered(options[options.length - 1]);
-        else if (["ArrowLeft", "ArrowUp"].includes(e.key))
-            setSelectedAndHovered(options[Math.max(0, hoveredIndex - 1)]);
-        else if (["ArrowRight", "ArrowDown"].includes(e.key))
-            setSelectedAndHovered(options[Math.min(options.length - 1, hoveredIndex + 1)]);
-        else if (isCharacterKey(e)) {
-            setSearch(prev => prev + e.key);
-            const timeoutId = setTimeout(() => setSearch(""), 1000);
-            if (searchTimeout)
-                clearTimeout(searchTimeout);
-            setSearchTimeout(timeoutId)
+        } else if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
+            cancelAndClearSearch();
+            setSelectedAndHovered(options[Math.max(0, effectiveHoveredIndex - 1)]);
+        } else if (["ArrowRight", "ArrowDown"].includes(e.key)) {
+            cancelAndClearSearch();
+            setSelectedAndHovered(options[Math.min(options.length - 1, effectiveHoveredIndex + 1)]);
+        } else if (isCharacterKey(e)) {
+            const newSearch = search + e.key;
+            const match = options.find(o => o.startsWith(newSearch)) ?? null;
+            // Update hovered state immediately so the match persists after the search timeout clears
+            if (match) setHovered(match);
+            setSearch(newSearch);
+            if (searchTimeoutRef.current !== null) clearTimeout(searchTimeoutRef.current);
+            searchTimeoutRef.current = setTimeout(() => setSearch(""), 1000);
         }
     };
-
-    useEffect(() => {
-        if (search === "")
-            return;
-        const match = options.find((option) => option.startsWith(search));
-        if (match)
-            setSelectedAndHovered(match)
-    }, [options, search, setSelectedAndHovered]);
 
     return (
         <SelectContext.Provider
@@ -86,7 +95,7 @@ export const Select = (props: SelectProps) => {
                 unregisterOption,
                 selected,
                 setSelected: setSelectedAndClose,
-                hovered,
+                hovered: effectiveHovered,
                 setHovered,
         }}>
             <div
@@ -111,7 +120,7 @@ export const Select = (props: SelectProps) => {
                     className={styles.options_container}
                     id={listboxId}
                     role={"listbox"}
-                    aria-activedescendant={`${listboxId}-${hovered}`}
+                    aria-activedescendant={`${listboxId}-${effectiveHovered}`}
                     data-open={isOpen}>
                     {children}
                 </ul>

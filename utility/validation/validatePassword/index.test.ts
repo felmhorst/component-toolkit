@@ -25,47 +25,47 @@ describe('validatePassword', () => {
 
     describe('requireUppercase', () => {
         it('accepts a password with an uppercase letter', () => {
-            expect(validatePassword('Abcdefgh', { requireUppercase: true })).toBe(true);
+            expect(validatePassword('Abcdefgh', { isUppercaseRequired: true })).toBe(true);
         });
 
         it('rejects a password without an uppercase letter', () => {
-            expect(validatePassword('abcdefgh', { requireUppercase: true })).toBe(false);
+            expect(validatePassword('abcdefgh', { isUppercaseRequired: true })).toBe(false);
         });
     });
 
     describe('requireLowercase', () => {
         it('accepts a password with a lowercase letter', () => {
-            expect(validatePassword('ABCDEFGh', { requireLowercase: true })).toBe(true);
+            expect(validatePassword('ABCDEFGh', { isLowercaseRequired: true })).toBe(true);
         });
 
         it('rejects a password without a lowercase letter', () => {
-            expect(validatePassword('ABCDEFGH', { requireLowercase: true })).toBe(false);
+            expect(validatePassword('ABCDEFGH', { isLowercaseRequired: true })).toBe(false);
         });
     });
 
     describe('requireDigit', () => {
         it('accepts a password containing a digit', () => {
-            expect(validatePassword('abcdefg1', { requireDigit: true })).toBe(true);
+            expect(validatePassword('abcdefg1', { isDigitRequired: true })).toBe(true);
         });
 
         it('rejects a password with no digits', () => {
-            expect(validatePassword('abcdefgh', { requireDigit: true })).toBe(false);
+            expect(validatePassword('abcdefgh', { isDigitRequired: true })).toBe(false);
         });
     });
 
     describe('requireSpecialChar', () => {
         it('accepts a password with a special character', () => {
-            expect(validatePassword('abcdefg!', { requireSpecialChar: true })).toBe(true);
+            expect(validatePassword('abcdefg!', { isSpecialCharRequired: true })).toBe(true);
         });
 
         it('accepts a password with various special characters', () => {
             for (const char of ['!', '@', '#', '$', '%', '^', '&', '*', '-', '_']) {
-                expect(validatePassword(`abcdefg${char}`, { requireSpecialChar: true })).toBe(true);
+                expect(validatePassword(`abcdefg${char}`, { isSpecialCharRequired: true })).toBe(true);
             }
         });
 
         it('rejects a password with only alphanumeric characters', () => {
-            expect(validatePassword('abcdefg1', { requireSpecialChar: true })).toBe(false);
+            expect(validatePassword('abcdefg1', { isSpecialCharRequired: true })).toBe(false);
         });
     });
 

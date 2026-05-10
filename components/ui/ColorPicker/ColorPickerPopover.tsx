@@ -4,14 +4,10 @@ import styles from "./ColorPickerPopover.module.css";
 import {ColorSlider2D} from "@/components/ui/ColorSlider2D";
 import {HueSlider} from "@/components/ui/HueSlider";
 import {OpacitySlider} from "@/components/ui/OpacitySlider";
-import {forwardRef, useCallback, useImperativeHandle, useRef, useState} from "react";
+import React, {forwardRef, useCallback, useImperativeHandle, useRef, useState} from "react";
 
 const FOCUSABLE_SELECTOR =
     '[tabindex]:not([tabindex="-1"]), input:not([disabled]), button:not([disabled])';
-
-interface ColorPickerPopoverProps {
-
-}
 
 export interface ColorPickerPopoverHandle {
     isOpen: boolean;
@@ -19,24 +15,27 @@ export interface ColorPickerPopoverHandle {
     close: () => void;
 }
 
-export const ColorPickerPopover = forwardRef<ColorPickerPopoverHandle, ColorPickerPopoverProps>((props, ref) => {
-    const {} = props;
-    const dialogRef = useRef<HTMLDialogElement>(null!);
+export const ColorPickerPopover = forwardRef<ColorPickerPopoverHandle, object>(({}, ref) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
     const openerRef = useRef<Element | null>(null);
     const [hue, setHue] = useState<number>(0);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [position, setPosition] = useState<{x: number, y: number}>({x: 0, y: 0});
 
     const close = useCallback(() => {
-        dialogRef.current.close();
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        dialog.close();
         setIsOpen(false);
         if (openerRef.current instanceof HTMLElement) openerRef.current.focus();
         openerRef.current = null;
     }, []);
 
     const open = useCallback((x: number, y: number) => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
         openerRef.current = document.activeElement;
-        dialogRef.current.show();
+        dialog.show();
         setIsOpen(true);
         setPosition({x, y});
         requestAnimationFrame(() => {
@@ -51,8 +50,10 @@ export const ColorPickerPopover = forwardRef<ColorPickerPopoverHandle, ColorPick
             return;
         }
         if (e.key === 'Tab') {
+            const dialog = dialogRef.current;
+            if (!dialog) return;
             const focusable = Array.from(
-                dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+                dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
             );
             if (!focusable.length) return;
             const first = focusable[0], last = focusable[focusable.length - 1];
@@ -93,3 +94,5 @@ export const ColorPickerPopover = forwardRef<ColorPickerPopoverHandle, ColorPick
         </div>
     );
 });
+
+ColorPickerPopover.displayName = "ColorPickerPopover";

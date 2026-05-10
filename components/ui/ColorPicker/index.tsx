@@ -2,7 +2,7 @@
 
 import type { ColorPickerPopoverHandle} from "@/components/ui/ColorPicker/ColorPickerPopover";
 import {ColorPickerPopover} from "@/components/ui/ColorPicker/ColorPickerPopover";
-import {useCallback, useRef} from "react";
+import React, {useCallback, useRef} from "react";
 import {ColorSwatch} from "@/components/ui/ColorSwatch";
 
 
@@ -10,18 +10,19 @@ interface ColorPickerProps {
     value?: string;
 }
 
-export const ColorPicker = (props: ColorPickerProps) => {
-    const {
-        value
-    } = props;
-    const swatchRef = useRef<HTMLButtonElement>(null!);
-    const popoverRef = useRef<ColorPickerPopoverHandle>(null!);
+export const ColorPicker: React.FC<ColorPickerProps> = ({}) => {
+    const swatchRef = useRef<HTMLButtonElement>(null);
+    const popoverRef = useRef<ColorPickerPopoverHandle>(null);
 
     const openPopover = useCallback(() => {
-        const swatchRect = swatchRef.current.getBoundingClientRect();
+        const swatch = swatchRef.current;
+        if (!swatch) return;
+        const popover = popoverRef.current;
+        if (!popover) return;
+        const swatchRect = swatch.getBoundingClientRect();
         const x = swatchRect.x + swatchRect.width / 2;
         const y = swatchRect.y;
-        popoverRef.current.open(x, y);
+        popover.open(x, y);
     }, []);
 
     return (

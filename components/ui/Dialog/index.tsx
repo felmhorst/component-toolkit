@@ -26,12 +26,13 @@ export const Dialog = (props: DialogProps) => {
         footer,
     } = props;
 
-    const dialogRef = useRef<HTMLDialogElement>(null!);
+    const dialogRef = useRef<HTMLDialogElement>(null);
     const openerRef = useRef<Element | null>(null);
     const titleId = useId();
 
     useEffect(() => {
         const dialog = dialogRef.current;
+        if (!dialog) return;
         if (isOpen) {
             openerRef.current = document.activeElement;
             dialog.showModal();
@@ -43,6 +44,7 @@ export const Dialog = (props: DialogProps) => {
 
     useEffect(() => {
         const dialog = dialogRef.current;
+        if (!dialog) return;
         const handleCancel = (e: Event) => {
             e.preventDefault();
             onClose();
@@ -52,7 +54,9 @@ export const Dialog = (props: DialogProps) => {
     }, [onClose]);
 
     const handleClose = useCallback(() => {
-        dialogRef.current.close();
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        dialog.close();
         onClose();
         if (openerRef.current instanceof HTMLElement) openerRef.current.focus();
         openerRef.current = null;
@@ -63,9 +67,11 @@ export const Dialog = (props: DialogProps) => {
     }, [handleClose]);
 
     const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDialogElement>) => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
         if (e.key !== "Tab") return;
         const focusable = Array.from(
-            dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+            dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
         );
         if (!focusable.length) return;
         const first = focusable[0];

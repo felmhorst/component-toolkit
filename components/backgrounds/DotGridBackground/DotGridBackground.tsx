@@ -1,9 +1,7 @@
 import styles from "./DotGridBackground.module.css";
 import React from "react";
 
-interface GridBackgroundProps extends React.ComponentProps<'div'> {
-}
-export const DotGridBackground = ({ className = "", ...props }: GridBackgroundProps ) => {
+export const DotGridBackground: React.FC<React.ComponentProps<'div'>> = ({ className = "", ...props } ) => {
     return (
         <div
             {...props}

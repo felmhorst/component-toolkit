@@ -10,7 +10,7 @@ const meta = {
     },
     args: {},
     tags: ['autodocs'],
-    render: (args) => (
+    render: () => (
         <>
             <Cursor/>
             <Button label={"Button"}/>

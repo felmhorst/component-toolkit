@@ -9,23 +9,20 @@ const eslintConfig = [
   ...tsConfig,
   ...storybook.configs["flat/recommended"],
 
-  // Override react.version to skip auto-detection — eslint-plugin-react's detect
-  // uses context.getFilename() which was removed in ESLint 10 flat config mode
   {
     settings: {
       react: { version: "19" },
     },
   },
 
-  // ── General rules (all JS/TS files) ───────────────────────────────────────
+  // General rules (all JS/TS files)
   {
     rules: {
       "no-var": "error",
       "prefer-const": "error",
-      // Prevents hidden side effects — a function must do exactly what its name says
       "no-param-reassign": "error",
       "no-console": "warn",
-      // Matches the 40-line function limit from CLAUDE.md
+      // 40-line function limit
       "max-lines-per-function": [
         "warn",
         { max: 40, skipComments: true, skipBlankLines: true },
@@ -33,12 +30,11 @@ const eslintConfig = [
     },
   },
 
-  // ── TypeScript rules (no type information required) ───────────────────────
+  // TypeScript rules (no type information required)
   {
     files: ["**/*.ts", "**/*.tsx"],
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
-      // Upgrade from Next.js default 'warn'; underscore prefix is the escape hatch
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -60,7 +56,7 @@ const eslintConfig = [
     },
   },
 
-  // ── TypeScript type-aware rules (requires full type information) ───────────
+  // TypeScript type-aware rules (requires full type information)
   {
     files: ["**/*.ts", "**/*.tsx"],
     ignores: [".storybook/**"],
@@ -71,7 +67,7 @@ const eslintConfig = [
       },
     },
     rules: {
-      // Enforces "Throw exceptions, never return error codes or null" from CLAUDE.md
+      // Throw exceptions, never return error codes or null
       "@typescript-eslint/only-throw-error": [
         "error",
         {
@@ -80,7 +76,7 @@ const eslintConfig = [
           allowRethrowing: true,
         },
       ],
-      // Enforces all naming conventions from CLAUDE.md
+      // Enforces all naming conventions
       "@typescript-eslint/naming-convention": [
         "warn",
         {
@@ -114,6 +110,10 @@ const eslintConfig = [
         },
         {
           selector: "enum",
+          format: ["PascalCase"],
+        },
+        {
+          selector: "enumMember",
           format: ["PascalCase"],
         },
         {

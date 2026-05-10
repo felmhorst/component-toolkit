@@ -30,7 +30,8 @@ describe('ColorPicker', () => {
     it('pressing Escape on the popover closes it', () => {
         const { container } = render(<ColorPicker />);
         fireEvent.click(screen.getByRole('button'));
-        const dialog = container.querySelector('dialog')!;
+        const dialog = container.querySelector('dialog');
+        if (!dialog) throw new Error('Dialog not found');
         fireEvent.keyDown(dialog, { key: 'Escape' });
         expect(HTMLDialogElement.prototype.close).toHaveBeenCalledOnce();
     });

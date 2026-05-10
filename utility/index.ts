@@ -1,5 +1,5 @@
 export { clamp } from './clamp';
-export { EASING } from './easing';
+export { Easing } from './easing';
 export { getClosestInteractiveParent } from './getClosestInteractiveParent';
 export { isCharacterKey } from './isCharacterKey';
 export { map } from './map';

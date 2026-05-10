@@ -12,7 +12,7 @@ export const ColorSlider2D = (props: ColorSlider2DProps) => {
     const {
         hue = 0,
     } = props;
-    const areaRef = useRef<HTMLDivElement>(null!);
+    const areaRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [saturation, setSaturation] = useState<number>(0);
     const [brightness, setBrightness] = useState<number>(100);
@@ -20,7 +20,9 @@ export const ColorSlider2D = (props: ColorSlider2DProps) => {
     const hsl = `hsl(${hue} 100% 50%)`;
 
     const updateFromMouseEvent = (e: MouseEvent) => {
-        const rect = areaRef.current.getBoundingClientRect();
+        const area = areaRef.current;
+        if (!area) return;
+        const rect = area.getBoundingClientRect();
         setSaturation(Math.round(clamp((e.clientX - rect.x) / rect.width, 0, 1) * 100));
         setBrightness(Math.round((1 - clamp((e.clientY - rect.y) / rect.height, 0, 1)) * 100));
     };

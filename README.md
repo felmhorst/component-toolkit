@@ -18,6 +18,7 @@ npm ci            # install dependencies
 npm run dev       # development server at http://localhost:3000
 npm run storybook # component explorer at http://localhost:6006
 npm run test      # run tests
+npm run lint      # run linter
 ```
 
 ## Project Structure

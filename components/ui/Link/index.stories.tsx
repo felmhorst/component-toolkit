@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { fn } from 'storybook/test';
 import {Link} from './index';
-import React from "react";
 
 const meta = {
     title: 'UI/Link',

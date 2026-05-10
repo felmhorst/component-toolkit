@@ -27,11 +27,11 @@ export const Option = (props: OptionProps) => {
         unregisterOption
     } = useSelect();
 
-    const ref = useRef<HTMLLIElement>(null!);
+    const ref = useRef<HTMLLIElement>(null);
 
     const handleHoverStart = useCallback(() => {
         setHovered(value);
-    }, [value]);
+    }, [setHovered, value]);
 
     useHover(ref, {
         onHoverStart: handleHoverStart

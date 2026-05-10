@@ -4,6 +4,7 @@ import styles from "./withReplay.module.css";
 import {RotateCwIcon} from "lucide-react";
 
 export const withReplay: Decorator  = (Story, context) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [key, setKey] = useState<number>(0);
 
     function replay() {

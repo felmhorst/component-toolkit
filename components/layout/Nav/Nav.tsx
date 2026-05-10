@@ -28,8 +28,6 @@ const NavItem = ({
     label,
     href,
 }: NavItemProps) => {
-    const pathname = usePathname();
-    console.log("path", pathname);
     return (
         <li className={styles.li}>
             <Link href={href} className={styles.link}>

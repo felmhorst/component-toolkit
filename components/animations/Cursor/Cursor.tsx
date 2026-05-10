@@ -13,29 +13,31 @@ export interface Vector2D {
 
 export const Cursor = () => {
     const containerRef = useRef<HTMLDivElement>(null!);
-    const interactiveElement = useRef<Element|null>(null);
     const isCoarsePointer = useMediaQuery('(pointer: coarse)');
 
     const [position, setPosition] = useState<Vector2D>({x: 0, y: 0});
+    const [targetPosition, setTargetPosition] = useState({x: 0, y: 0});
     const [isHoveringInteractiveElement, setIsHoveringInteractiveElement] = useState<boolean>(false);
     const [isClicking, setIsClicking] = useState<boolean>(false);
-    // const [isHidden, setIsHidden] = useState<boolean>(false);
 
     useLayoutEffect(() => {
         if (isCoarsePointer)
             return;
         const handleMousemove = (e: WindowEventMap['mousemove']) => {
-            setPosition({x: e.clientX, y: e.clientY});
+            const mousePos = {x: e.clientX, y: e.clientY};
+            setPosition(mousePos);
             const target = e.target;
             if (!(target instanceof Element))
                 return;
 
-            // const hideCursor = target.closest('.--hide-cursor');
-            // setIsHidden(!!hideCursor);
-
             const closestInteractiveElement = getClosestInteractiveParent(target);
             setIsHoveringInteractiveElement(!!closestInteractiveElement);
-            interactiveElement.current = closestInteractiveElement;
+
+            const bounds = closestInteractiveElement?.getBoundingClientRect();
+            setTargetPosition(bounds ? {
+                x: (bounds.x + (bounds.width * .5) + mousePos.x) * .5,
+                y: (bounds.y + (bounds.height * .5) + mousePos.y) * .5
+            } : mousePos);
         };
         const handleMousedown = () => setIsClicking(true);
         const handleMouseup = () => setIsClicking(false);
@@ -51,15 +53,6 @@ export const Cursor = () => {
             window.removeEventListener('dragend', handleMouseup);
         }
     }, [isCoarsePointer]);
-
-    const targetBounds = interactiveElement.current?.getBoundingClientRect();
-    const targetPosition = targetBounds ? {
-        x: (targetBounds.x + (targetBounds.width * .5) + position.x) * .5,
-        y: (targetBounds.y + (targetBounds.height * .5) + position.y) * .5
-    } : {
-        x: position.x,
-        y: position.y
-    };
 
     if (isCoarsePointer)
         return;

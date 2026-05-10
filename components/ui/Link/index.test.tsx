@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { Link } from './index';
+import type { LinkProps } from 'next/link';
+import React from 'react';
 
 vi.mock('next/link', () => ({
-    default: ({ children, href, ...props }: any) => <a href={String(href)} {...props}>{children}</a>,
+    default: ({ children, href, ...props }: LinkProps & React.PropsWithChildren) => <a href={String(href)} {...props}>{children}</a>,
 }));
 
 describe('Link', () => {

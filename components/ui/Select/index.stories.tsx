@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { fn } from 'storybook/test';
 import {Select} from './index';
 import {Option} from "@/components/ui/Select/Option";
 
