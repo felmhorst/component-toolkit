@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Dialog } from './index';
 import { Button } from '@/components/ui/Button';
 
@@ -41,6 +41,11 @@ export const Default: Story = {
 export const NoTitle: Story = {
     render: () => {
         const [isOpen, setIsOpen] = useState(false);
+
+        useEffect(() => {
+            console.log("isOpen", isOpen);
+        }, [isOpen]);
+
         return (
             <>
                 <Button label="Open Dialog" onClick={() => setIsOpen(true)} />

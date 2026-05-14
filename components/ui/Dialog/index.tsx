@@ -39,6 +39,10 @@ export const Dialog = (props: DialogProps) => {
             requestAnimationFrame(() => {
                 dialog.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)?.focus();
             });
+        } else if (dialog.open) {
+            dialog.close();
+            if (openerRef.current instanceof HTMLElement) openerRef.current.focus();
+            openerRef.current = null;
         }
     }, [isOpen]);
 
@@ -54,12 +58,7 @@ export const Dialog = (props: DialogProps) => {
     }, [onClose]);
 
     const handleClose = useCallback(() => {
-        const dialog = dialogRef.current;
-        if (!dialog) return;
-        dialog.close();
         onClose();
-        if (openerRef.current instanceof HTMLElement) openerRef.current.focus();
-        openerRef.current = null;
     }, [onClose]);
 
     const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDialogElement>) => {
