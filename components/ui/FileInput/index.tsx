@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import styles from './index.module.scss';
+import styles from './index.module.css';
 import { isFileTypeAccepted, toAcceptAttribute } from '@/utility';
 
 export interface FileInputProps {
