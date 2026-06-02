@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import type { Decorator } from "@storybook/react";
-import styles from "./withReplay.module.css";
+import styles from "./index.module.css";
 import {RotateCwIcon} from "lucide-react";
 
 export const withReplay: Decorator  = (Story, context) => {

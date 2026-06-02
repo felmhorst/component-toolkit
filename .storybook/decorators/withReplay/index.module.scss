@@ -1,0 +1,32 @@
+.button {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  padding: 0.5rem;
+  border: none;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  color: var(--color-on-surface);
+  opacity: .8;
+  transition:
+          opacity .2s,
+          background-color .2s,
+          color .2s,
+          transform .1s;
+  outline-offset: 2px;
+
+  &:hover, &:focus-visible {
+    opacity: 1;
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+
+  &:focus-visible {
+    outline: var(--color-primary) solid 2px;
+  }
+}

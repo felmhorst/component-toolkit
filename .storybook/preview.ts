@@ -9,6 +9,16 @@ const preview: Preview = {
               date: /Date$/i,
           },
       },
+      backgrounds: {
+          options: {
+              // default overrides
+              dark: { name: "Dark", value: "#15161A"},
+              light: { name: "Light", value: "#FFFFFF"},
+
+              // custom options
+              surface: { name: "Surface", value: "var(--color-surface)" }
+          }
+      },
       nextjs: {
           router: {
               pathname: '/about',

@@ -9,6 +9,9 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
+    globals: {
+        backgrounds: { value: "surface", grid: false }
+    },
     tags: ['autodocs'],
     argTypes: {},
     args: {},

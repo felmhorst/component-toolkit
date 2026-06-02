@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import styles from "./Nav.module.css";
-import {usePathname} from "next/navigation";
 
 export const Nav = () => {
     return (
