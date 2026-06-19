@@ -2,7 +2,7 @@
   position: relative;
   transition: color 0.3s ease-out;
 
-  &::after {
+  &::before, &::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -14,8 +14,12 @@
     transform-origin: left;
     transition: transform .3s ease-in-out;
   }
+  &::before {
+    background-color: var(--color-surface);
+    transform: unset;
+  }
   &:hover::after {
-    transform: scaleX(1);
+    transform: scaleX(1.01);
   }
 
   &__color {

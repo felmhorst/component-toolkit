@@ -23,7 +23,7 @@ export const PasswordField = (props: React.InputHTMLAttributes<HTMLInputElement>
                 className={styles.visibilityButton}
                 aria-label={isVisible ? "Hide password" : "Show password"}
                 onClick={toggleVisibility}>
-                {isVisible ? <EyeOff aria-hidden={true}/> : <Eye aria-hidden={true}/>}
+                {isVisible ? <EyeOff size={20} aria-hidden={true}/> : <Eye size={20} aria-hidden={true}/>}
             </button>
         </div>
     );

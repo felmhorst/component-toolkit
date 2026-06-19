@@ -12,6 +12,9 @@
 
 .visibilityButton {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
