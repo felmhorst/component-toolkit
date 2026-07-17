@@ -3,7 +3,7 @@ import { Field } from './index';
 import { TextField } from '../TextField';
 
 const meta = {
-    title: 'UI/Field',
+    title: 'UI/Input/Field',
     component: Field,
     parameters: {
         layout: 'centered',

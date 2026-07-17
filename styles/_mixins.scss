@@ -6,7 +6,14 @@
   }
 }
 
+@mixin focus-outline {
+  &:focus-visible {
+    outline: solid 2px var(--color-primary);
+  }
+}
+
 @mixin input-base {
+  @include focus-outline;
   display: block;
   box-sizing: border-box;
   margin: 0;
@@ -23,10 +30,6 @@
 
   &:disabled {
     opacity: .5;
-  }
-
-  &:focus-visible {
-    outline: solid 2px var(--color-primary);
   }
 }
 

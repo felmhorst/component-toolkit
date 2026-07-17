@@ -3,7 +3,7 @@ import { Checkbox } from './index';
 import { Field } from '../Field';
 
 const meta = {
-    title: 'UI/Checkbox',
+    title: 'UI/Input/Checkbox',
     component: Checkbox,
     parameters: {
         layout: 'centered',

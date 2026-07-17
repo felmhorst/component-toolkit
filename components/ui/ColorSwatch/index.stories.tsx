@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {ColorSwatch} from './index';
 
 const meta = {
-    title: 'UI/ColorSwatch',
+    title: 'UI/Input/ColorSwatch',
     component: ColorSwatch,
     parameters: {
         layout: 'centered',

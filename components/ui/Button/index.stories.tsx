@@ -5,7 +5,7 @@ import {Button} from './index';
 import React from "react";
 
 const meta = {
-    title: 'UI/Button',
+    title: 'UI/Input/Button',
     component: Button,
     parameters: {
         layout: 'centered',

@@ -3,7 +3,7 @@ import { FileInput } from './index';
 import { Field } from '@/components/ui/Field';
 
 const meta = {
-    title: 'UI/FileInput',
+    title: 'UI/Input/FileInput',
     component: FileInput,
     parameters: { layout: 'centered' },
     tags: ['autodocs'],

@@ -3,7 +3,7 @@ import {ToggleButtonGroup} from './ToggleButtonGroup';
 import {ToggleButton} from "@/components/ui/ToggleButton/index";
 
 const meta = {
-    title: 'UI/ToggleButtonGroup',
+    title: 'UI/Input/ToggleButtonGroup',
     component: ToggleButtonGroup,
     parameters: {
         layout: 'centered',

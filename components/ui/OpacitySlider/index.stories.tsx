@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {OpacitySlider} from './index';
 
 const meta = {
-    title: 'UI/OpacitySlider',
+    title: 'UI/Input/OpacitySlider',
     component: OpacitySlider,
     parameters: {
         layout: 'centered',

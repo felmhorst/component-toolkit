@@ -3,7 +3,7 @@ import { PasswordField } from './index';
 import { Field } from '../Field';
 
 const meta = {
-    title: 'UI/PasswordField',
+    title: 'UI/Input/PasswordField',
     component: PasswordField,
     parameters: {
         layout: 'centered',

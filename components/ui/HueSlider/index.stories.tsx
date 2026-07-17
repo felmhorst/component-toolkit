@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {HueSlider} from './index';
 
 const meta = {
-    title: 'UI/HueSlider',
+    title: 'UI/Input/HueSlider',
     component: HueSlider,
     parameters: {
         layout: 'centered',

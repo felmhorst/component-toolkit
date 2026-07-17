@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {ColorPicker} from './index';
 
 const meta = {
-    title: 'UI/ColorPicker',
+    title: 'UI/Input/ColorPicker',
     component: ColorPicker,
     parameters: {
         layout: 'centered',

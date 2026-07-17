@@ -4,7 +4,7 @@ import { Option } from "@/components/ui/Select/Option";
 import { Field } from '../Field';
 
 const meta = {
-    title: 'UI/Select',
+    title: 'UI/Input/Select',
     component: Select,
     parameters: {
         layout: 'centered',

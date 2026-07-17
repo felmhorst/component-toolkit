@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { FileArea } from './index';
 
 const meta = {
-    title: 'UI/FileArea',
+    title: 'UI/Input/FileArea',
     component: FileArea,
     parameters: { layout: 'centered' },
     tags: ['autodocs'],

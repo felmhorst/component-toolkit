@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {ColorSlider2D} from './index';
 
 const meta = {
-    title: 'UI/ColorSlider2D',
+    title: 'UI/Input/ColorSlider2D',
     component: ColorSlider2D,
     parameters: {
         layout: 'centered',

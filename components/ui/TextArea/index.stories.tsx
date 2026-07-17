@@ -3,7 +3,7 @@ import { TextArea } from './index';
 import { Field } from '../Field';
 
 const meta = {
-    title: 'UI/TextArea',
+    title: 'UI/Input/TextArea',
     component: TextArea,
     parameters: {
         layout: 'centered',
