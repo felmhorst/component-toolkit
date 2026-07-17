@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.key {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  background-color: unset;
+  color: var(--color-on-surface-2);
+  border: 1px solid var(--color-on-surface-2);
+  border-radius: var(--border-radius-md);
+  transition: .1s ease-in-out;
+  transform-origin: bottom center;
+
+  &:hover, &:focus-visible, &[data-active=true] {
+    background-color: var(--color-surface-2);
+    color: var(--color-on-surface);
+  }
+
+  &:active, &[data-active=true] {
+    transform: scale(.95);
+  }
+
+  &--type {
+    &-Enter {
+      flex: 0 0 70px;
+    }
+    &-Space {
+      flex: 0 0 260px;
+    }
+    &-ShiftRight {
+      flex: 0 0 120px;
+    }
+    &-Backspace {
+      flex: 0 0 90px;
+    }
+    &-CapsLock {
+      flex: 0 0 80px;
+    }
+    &-Tab, &-ControlLeft, &-ControlRight {
+      flex: 0 0 60px;
+    }
+    &-ShiftLeft, &-MetaLeft, &-AltLeft, &-AltRight, &-Fn, &-ContextMenu {
+      flex: 0 0 50px;
+    }
+  }
+
+}
