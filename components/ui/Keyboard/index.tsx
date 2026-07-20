@@ -1,21 +1,47 @@
 "use client";
 
-import React, {ReactElement, useEffect} from "react";
+import React, {useEffect} from "react";
 import styles from "./index.module.css";
-import {KEYBOARD_LAYOUT_WINDOWS_GERMAN, MAPPING_KEYCODE_TO_KEY} from "@/utility/keys";
-import {ArrowLeft, FileTextIcon} from "lucide-react";
+import {
+    KeyboardCharacterLayout, KeyboardPhysicalLayout,
+} from "@/utility/keys";
+import { KeyboardContextProvider} from "@/components/ui/Keyboard/KeyboardContext";
+import {Key} from "@/components/ui/Keyboard/Key";
+import {
+    KEYBOARD_ALPHANUMERIC_QWERTZ,
+    KEYBOARD_ARROW_KEYS,
+    KEYBOARD_EDITING_KEYS, KEYBOARD_FUNCTION_KEYS,
+    KEYBOARD_NUMPAD,
+    KEYBOARD_SYSTEM_KEYS
+} from "@/utility/keyboard/keyboard_layouts";
+import {getAlphanumericKeyboardLayout} from "@/utility/keyboard/getAlphanumericKeyboardLayout";
 
-export const Keyboard: React.FC = ({
+interface KeyboardProps {
+    visualizeEvents?: boolean;
+    showNumpad?: boolean;
+    showNavigationKeys?: boolean;
+    showFunctionKeys?: boolean;
+    characterLayout?: KeyboardCharacterLayout;
+    physicalLayout?: KeyboardPhysicalLayout;
+}
+
+export const Keyboard: React.FC<KeyboardProps> = ({
+    visualizeEvents = true,
+    showNumpad = false,
+    showNavigationKeys = false,
+    showFunctionKeys = false,
+    characterLayout = KeyboardCharacterLayout.Qwerty,
+    physicalLayout = KeyboardPhysicalLayout.Ansi,
 }) => {
 
+
     useEffect(() => {
-        function onKeyPress(e: KeyboardEvent) {
-            console.log(e.code, e.key, elements.length);
-        }
         function getMatchingElements(keyCode: string) {
             return document.querySelectorAll<HTMLButtonElement>(`[data-keycode='${keyCode}']`)
         }
+
         function onKeyDown(e: KeyboardEvent) {
+            console.log(e.code, e.key, e);
             getMatchingElements(e.code).forEach((element) => {
                 element.dataset.active = "true";
             });
@@ -26,44 +52,122 @@ export const Keyboard: React.FC = ({
             });
         }
 
-        window.addEventListener("keydown", onKeyPress);
-        window.addEventListener("keydown", onKeyDown);
-        window.addEventListener("keyup", onKeyUp);
+        if (visualizeEvents) {
+            window.addEventListener("keydown", onKeyDown);
+            window.addEventListener("keyup", onKeyUp);
+        }
         return () => {
-            window.removeEventListener("keydown", onKeyPress);
             window.removeEventListener("keydown", onKeyDown);
             window.removeEventListener("keyup", onKeyUp);
         }
-    }, []);
+    }, [visualizeEvents]);
 
     return (
-        <div className={styles.container}>
-            {KEYBOARD_LAYOUT_WINDOWS_GERMAN.map((row, i) => (
+        <KeyboardContextProvider>
+            <div className={styles.keyboard}>
+                {showFunctionKeys && <FunctionKeys/>}
+                <AlphanumericKeys
+                    physicalLayout={physicalLayout}
+                    characterLayout={characterLayout}/>
+                {showFunctionKeys && showNavigationKeys && <SystemKeys/>}
+                {showNavigationKeys && <div className={styles.area_navigation}>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%"
+                    }}>
+                        <EditingKeys/>
+                        <ArrowKeys/>
+                    </div>
+                </div>}
+                {showNumpad && <Numpad/>}
+            </div>
+        </KeyboardContextProvider>
+    );
+};
+
+const FunctionKeys: React.FC = () => {
+    return (
+        <div className={styles.area_function}>
+            {KEYBOARD_FUNCTION_KEYS.map((group, i) => (
                 <div className={styles.row} key={i}>
-                    {row.map((key) => (
-                        <Key keyCode={key} key={key}/>
+                    {group.map((keyConfig) => (
+                        <Key
+                            key={keyConfig.code}
+                            {...keyConfig}/>
                     ))}
                 </div>
             ))}
         </div>
-    );
+    )
 };
 
-interface KeyProps {
-    keyCode: string;
+type AlphanumericKeysProps = Required<Pick<KeyboardProps, "physicalLayout" | "characterLayout">>;
+
+const AlphanumericKeys: React.FC<AlphanumericKeysProps> = ({physicalLayout, characterLayout}) => {
+    const layout = getAlphanumericKeyboardLayout(characterLayout);
+    return (
+        <div className={styles.area_alphanumeric}>
+            {layout.map((row, i) => (
+                <div className={styles.row} key={i}>
+                    {row.map((keyConfig) => (
+                        <Key
+                            key={keyConfig.code}
+                            {...keyConfig}/>
+                    ))}
+                </div>
+            ))}
+        </div>
+    )
+};
+
+const SystemKeys: React.FC = () => {
+    return (
+        <div className={styles.area_system}>
+            <div className={styles.row}>
+                {KEYBOARD_SYSTEM_KEYS.map((keyConfig) => (
+                    <Key
+                        key={keyConfig.code}
+                        {...keyConfig}/>
+                ))}
+            </div>
+        </div>
+    )
 }
 
-export const Key: React.FC<KeyProps> = ({
-    keyCode,
-}) => {
-
+const EditingKeys: React.FC = () => {
     return (
-        <button
-            id={"key-" + keyCode}
-            data-keycode={keyCode}
-            data-active={false}
-            className={styles.key + " " + styles["key--type-" + keyCode]}>
-            {MAPPING_KEYCODE_TO_KEY[keyCode]}
-        </button>
-    )
+        <div className={styles.area_editing}>
+            {KEYBOARD_EDITING_KEYS.map((keyConfig) => (
+                <Key
+                    key={keyConfig.code}
+                    {...keyConfig}/>
+            ))}
+        </div>
+    );
+}
+
+const ArrowKeys: React.FC = () => {
+    return (
+        <div className={styles.area_arrow}>
+            {KEYBOARD_ARROW_KEYS.map((keyConfig) => (
+                <Key
+                    key={keyConfig.code}
+                    {...keyConfig}/>
+            ))}
+        </div>
+    );
+}
+
+const Numpad: React.FC = () => {
+    return (
+        <div className={styles.area_numpad}>
+            {KEYBOARD_NUMPAD.map((keyConfig) => (
+                <Key
+                    key={keyConfig.code}
+                    {...keyConfig}/>
+            ))}
+        </div>
+    );
 }

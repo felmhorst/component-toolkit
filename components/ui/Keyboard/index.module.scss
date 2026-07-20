@@ -1,60 +1,187 @@
 @use '../../../styles/mixins' as *;
 
-.container {
+$key-size: 40px;
+$gap-sm: 4px;
+$gap-lg: 16px;
+
+.keyboard {
+  /*display: flex;
+  flex-direction: row;
+  gap: 12px;*/
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(2, auto);
+  gap: $gap-lg;
+  grid-template-areas:
+    "function system none"
+    "alphanumeric navigation numpad";
+}
+
+.area {
+  &_function {
+    grid-area: function;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: $gap-sm;
+  }
+  &_system {
+    grid-area: system;
+  }
+  &_alphanumeric {
+    grid-area: alphanumeric;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-sm;
+  }
+  &_navigation {
+    grid-area: navigation;
+  }
+  &_numpad {
+    grid-area: numpad;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: $gap-sm;
+  }
+
+  &_editing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: $gap-sm;
+  }
+  &_arrow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: $gap-sm;
+  }
+
+}
+
+.grid_column {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: $gap-sm;
 }
 
 .key {
   @include focus-outline;
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  position: relative;
+  flex: 0 0 $key-size;
+  width: $key-size;
+  height: $key-size;
   background-color: unset;
   color: var(--color-on-surface-2);
   border: 1px solid var(--color-on-surface-2);
   border-radius: var(--border-radius-md);
   transition: .1s ease-in-out;
   transform-origin: bottom center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover, &:focus-visible, &[data-active=true] {
     background-color: var(--color-surface-2);
     color: var(--color-on-surface);
+    border-color: var(--color-on-surface);
+  }
+
+  &:focus-visible {
+    border-color: var(--color-primary);
   }
 
   &:active, &[data-active=true] {
     transform: translateY(1px) scale(.95);
   }
 
-  &--type {
-    &-Enter {
-      flex: 0 0 70px;
-    }
-    &-Space {
-      flex: 0 0 260px;
-    }
-    &-ShiftRight {
-      flex: 0 0 120px;
-    }
-    &-Backspace {
-      flex: 0 0 90px;
-    }
-    &-CapsLock {
-      flex: 0 0 80px;
-    }
-    &-Tab, &-ControlLeft, &-ControlRight {
-      flex: 0 0 60px;
-    }
-    &-ShiftLeft, &-MetaLeft, &-AltLeft, &-AltRight, &-Fn, &-ContextMenu {
-      flex: 0 0 50px;
+  &[data-keycode=Enter] {
+    flex: 0 0 70px;
+    width: 70px;
+  }
+
+  &[data-keycode=Space] {
+    flex: 0 0 260px;
+    width: 260px;
+  }
+  &[data-keycode=ShiftRight] {
+    flex: 0 0 120px;
+    width: 120px;
+  }
+  &[data-keycode=Backspace] {
+    flex: 0 0 90px;
+    width: 90px;
+  }
+  &[data-keycode=CapsLock] {
+    flex: 0 0 80px;
+    width: 80px;
+  }
+  &[data-keycode=Tab],
+  &[data-keycode=ControlLeft],
+  &[data-keycode=ControlRight] {
+    flex: 0 0 60px;
+    width: 60px;
+  }
+  &[data-keycode=ShiftLeft],
+  &[data-keycode=MetaLeft],
+  &[data-keycode=AltLeft],
+  &[data-keycode=AltRight],
+  &[data-keycode=Fn],
+  &[data-keycode=ContextMenu] {
+    flex: 0 0 50px;
+    width: 50px;
+  }
+  &[data-keycode=ArrowLeft],
+  &[data-keycode=ArrowRight],
+  &[data-keycode=ArrowDown],
+  &[data-keycode=Numpad0],
+  &[data-keycode=NumpadAdd],
+  &[data-keycode=NumpadEnter] {
+    flex: unset;
+  }
+  &[data-keycode=Numpad0] {
+    width: unset;
+    grid-column: span 2;
+  }
+  &[data-keycode=NumpadAdd], &[data-keycode=NumpadEnter] {
+    grid-row: span 2;
+    height: unset;
+  }
+  &[data-keycode=ArrowUp] {
+    grid-column: 2;
+  }
+  &[data-keycode=ArrowLeft],
+  &[data-keycode=ArrowRight],
+  &[data-keycode=ArrowDown] {
+    grid-row: 2;
+  }
+
+  &__primary, &__shift, &__alt {
+    display: inline-block;
+    opacity: .3;
+    &[data-highlight=true] {
+      opacity: 1;
     }
   }
 
+  &__shift {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    font-size: .8em;
+  }
+
+  &__alt {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    font-size: .8em;
+  }
 }
