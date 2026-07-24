@@ -27,6 +27,7 @@ export interface KeyConfig {
     Icon?: LucideIcon;
 }
 
+
 export const KEY_CONFIG: Record<string, KeyConfig> = {
     // meta keys
     Escape: {code: "Escape", primaryKey: "Escape"},

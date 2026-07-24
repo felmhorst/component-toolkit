@@ -1,15 +1,27 @@
 "use client";
 
 import React, {createContext, type PropsWithChildren, useEffect, useState} from "react";
+import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keyboard/keys";
 
 export const KeyboardContext = createContext({
     isCtrlKeyPressed: false,
     isShiftKeyPressed: false,
     isAltKeyPressed: false,
     isMetaKeyPressed: false,
+    characterLayout: KeyboardCharacterLayout.Qwerty,
+    physicalLayout: KeyboardPhysicalLayout.Ansi,
 });
 
-export const KeyboardContextProvider: React.FC<PropsWithChildren> = ({children}) => {
+interface KeyboardContextProviderProps extends PropsWithChildren {
+    characterLayout?: KeyboardCharacterLayout;
+    physicalLayout?: KeyboardPhysicalLayout;
+}
+
+export const KeyboardContextProvider: React.FC<KeyboardContextProviderProps> = ({
+    children,
+    characterLayout = KeyboardCharacterLayout.Qwerty,
+    physicalLayout = KeyboardPhysicalLayout.Ansi,
+}) => {
     const [isCtrlKeyPressed, setIsCtrlKeyPressed] = useState<boolean>(false);
     const [isShiftKeyPressed, setIsShiftKeyPressed] = useState<boolean>(false);
     const [isAltKeyPressed, setIsAltKeyPressed] = useState<boolean>(false);
@@ -36,6 +48,8 @@ export const KeyboardContextProvider: React.FC<PropsWithChildren> = ({children})
             isShiftKeyPressed,
             isAltKeyPressed,
             isMetaKeyPressed,
+            characterLayout,
+            physicalLayout
         }}>
             {children}
         </KeyboardContext.Provider>

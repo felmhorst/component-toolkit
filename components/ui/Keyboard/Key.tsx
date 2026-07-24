@@ -1,4 +1,4 @@
-import type {KeyConfig} from "@/utility/keys";
+import type {KeyConfig} from "@/utility/keyboard/keys";
 import React, {useContext} from "react";
 import {KeyboardContext} from "@/components/ui/Keyboard/KeyboardContext";
 import styles from "@/components/ui/Keyboard/index.module.css";

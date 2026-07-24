@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {Keyboard} from "@/components/ui/Keyboard/index";
-import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keys";
+import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keyboard/keys";
 
 const meta = {
     title: 'UI/Keyboard',
@@ -43,12 +43,30 @@ const meta = {
         showFunctionKeys: false,
         showNavigationKeys: false,
         showNumpad: false,
+        visualizeEvents: true,
     }
 } satisfies Meta<typeof Keyboard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    args: {},
+export const AnsiQwerty: Story = {
+    args: {
+        characterLayout: KeyboardCharacterLayout.Qwerty,
+        physicalLayout: KeyboardPhysicalLayout.Ansi,
+    },
+};
+
+export const IsoQwertz: Story = {
+    args: {
+        characterLayout: KeyboardCharacterLayout.Qwertz,
+        physicalLayout: KeyboardPhysicalLayout.Iso,
+    },
+};
+
+export const IsoAzerty: Story = {
+    args: {
+        characterLayout: KeyboardCharacterLayout.Azerty,
+        physicalLayout: KeyboardPhysicalLayout.Iso,
+    },
 };
