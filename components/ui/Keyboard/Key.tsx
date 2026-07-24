@@ -11,14 +11,23 @@ export const Key: React.FC<KeyProps> = (props) => {
         isCtrlKeyPressed,
         isShiftKeyPressed,
         isAltKeyPressed,
-        isMetaKeyPressed
+        isMetaKeyPressed,
+        isCapsLock,
+        isNumLock,
+        isScrollLock,
     } = useContext(KeyboardContext);
+
+    const isLocked = (isCapsLock && code === "CapsLock")
+        || (isNumLock && code === "NumLock")
+        || (isScrollLock && code === "ScrollLock");
 
     return (
         <button
             id={"key-" + code}
             data-keycode={code}
             data-active={false}
+            data-locked={isLocked}
+            disabled={isLocked}
             className={styles.key + " " + styles["key--type-" + code]}>
             <span
                 className={styles.key__primary}

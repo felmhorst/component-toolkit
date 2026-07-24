@@ -88,11 +88,14 @@ $gap-lg: 16px;
   justify-content: center;
   align-items: center;
 
-  &:hover, &:focus-visible, &[data-active=true] {
-    background-color: var(--color-surface-2);
-    color: var(--color-on-surface);
-    border-color: var(--color-on-surface);
+  &:not(:disabled) {
+    &:hover, &:focus-visible, &[data-active=true] {
+      background-color: var(--color-surface-2);
+      color: var(--color-on-surface);
+      border-color: var(--color-on-surface);
+    }
   }
+
 
   &:focus-visible {
     border-color: var(--color-primary);
@@ -102,42 +105,12 @@ $gap-lg: 16px;
     transform: translateY(1px) scale(.95);
   }
 
-  &[data-keycode=Enter] {
-    flex: 0 0 70px;
-    width: 70px;
+  &[data-locked=true] {
+    background-color: var(--color-surface-2);
+    color: var(--color-on-surface);
+    border-color: var(--color-on-surface);
   }
 
-  &[data-keycode=Space] {
-    flex: 0 0 260px;
-    width: 260px;
-  }
-  &[data-keycode=ShiftRight] {
-    flex: 0 0 120px;
-    width: 120px;
-  }
-  &[data-keycode=Backspace] {
-    flex: 0 0 90px;
-    width: 90px;
-  }
-  &[data-keycode=CapsLock] {
-    flex: 0 0 80px;
-    width: 80px;
-  }
-  &[data-keycode=Tab],
-  &[data-keycode=ControlLeft],
-  &[data-keycode=ControlRight] {
-    flex: 0 0 60px;
-    width: 60px;
-  }
-  &[data-keycode=ShiftLeft],
-  &[data-keycode=MetaLeft],
-  &[data-keycode=AltLeft],
-  &[data-keycode=AltRight],
-  &[data-keycode=Fn],
-  &[data-keycode=ContextMenu] {
-    flex: 0 0 50px;
-    width: 50px;
-  }
   &[data-keycode=ArrowLeft],
   &[data-keycode=ArrowRight],
   &[data-keycode=ArrowDown],
@@ -164,24 +137,62 @@ $gap-lg: 16px;
   }
 
   &__primary, &__shift, &__alt {
-    display: inline-block;
-    opacity: .3;
+    display: none;
     &[data-highlight=true] {
-      opacity: 1;
+      display: inline-block;
+    }
+  }
+}
+
+.keyboard {
+  .key {
+    &[data-keycode=Enter] {
+      flex: 0 0 70px;
+      width: 70px;
+    }
+
+    &[data-keycode=Space] {
+      flex: 0 0 264px;
+      width: 264px;
+    }
+    &[data-keycode=ShiftRight] {
+      flex: 0 0 124px;
+      width: 124px;
+    }
+    &[data-keycode=Backspace] {
+      flex: 0 0 90px;
+      width: 90px;
+    }
+    &[data-keycode=CapsLock] {
+      flex: 0 0 80px;
+      width: 80px;
+    }
+    &[data-keycode=Tab],
+    &[data-keycode=ControlLeft],
+    &[data-keycode=ControlRight] {
+      flex: 0 0 60px;
+      width: 60px;
+    }
+    &[data-keycode=ShiftLeft],
+    &[data-keycode=MetaLeft],
+    &[data-keycode=AltLeft],
+    &[data-keycode=AltRight],
+    &[data-keycode=Fn],
+    &[data-keycode=ContextMenu] {
+      flex: 0 0 50px;
+      width: 50px;
     }
   }
 
-  &__shift {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    font-size: .8em;
-  }
-
-  &__alt {
-    position: absolute;
-    top: 3px;
-    right: 4px;
-    font-size: .8em;
+  &[data-layout=ansi] .key {
+    &[data-keycode=Enter],
+    &[data-keycode=ShiftLeft]{
+      flex: 0 0 94px;
+      width: 94px;
+    }
+    &[data-keycode=Backslash] {
+      flex: 0 0 70px;
+      width: 70px;
+    }
   }
 }
