@@ -1,7 +1,6 @@
-import type { KeyboardCharacterLayout, KeyboardPhysicalLayout, KeyConfig} from "@/utility/keyboard/keys";
+import type { KeyCode, KeyboardCharacterLayout, KeyboardPhysicalLayout, KeyConfig} from "@/utility/keyboard/keys.types";
 import {KEYBOARD_PHYSICAL_LAYOUTS} from "@/utility/keyboard/physicalLayouts";
 import {KEY_MAPPING} from "@/utility/keyboard/characterMappings";
-import type {KeyCode} from "@/utility/keyboard/code";
 
 
 export function getAlphanumericKeyboardLayout(physicalLayout: KeyboardPhysicalLayout): KeyCode[][] {

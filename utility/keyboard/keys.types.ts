@@ -1,3 +1,34 @@
+import {type LucideIcon} from "lucide-react";
+
+export enum KeyboardCharacterLayout {
+    Qwerty = "qwerty",
+    Qwertz = "qwertz",
+    Azerty = "azerty"
+}
+
+export enum KeyboardPhysicalLayout {
+    Ansi = "ansi",
+    Iso = "iso",
+}
+
+interface DeadKeyOutput {
+    primaryKey: string;
+    shiftKey?: string;
+    altGraphKey?: string;
+}
+
+export interface KeyConfig {
+    code: string;
+    primaryKey: string;
+    shiftKey?: string;
+    altGraphKey?: string;
+    Icon?: LucideIcon;
+    deadKeyVariants?: Record<string,DeadKeyOutput>;
+    // todo: NumLock, Capslock,  deadKeys (´`^~"° & cedilla)
+    // todo: Ctrl, Fn for function keys
+}
+
+
 export enum KeyCode {
     // letters
     KeyA = "KeyA",

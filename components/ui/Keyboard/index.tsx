@@ -3,8 +3,8 @@
 import React, {useContext, useEffect} from "react";
 import styles from "./index.module.css";
 import {
-    KeyboardCharacterLayout, KeyboardPhysicalLayout,
-} from "@/utility/keyboard/keys";
+    KeyboardCharacterLayout, KeyboardPhysicalLayout, KeyCode, type KeyConfig,
+} from "@/utility/keyboard/keys.types";
 import {KeyboardContext, KeyboardContextProvider} from "@/components/ui/Keyboard/KeyboardContext";
 import {Key} from "@/components/ui/Keyboard/Key";
 import {
@@ -14,6 +14,7 @@ import {
     KEYBOARD_SYSTEM_KEYS
 } from "@/utility/keyboard/physicalLayouts";
 import {getAlphanumericKeyboardLayout, mapKey} from "@/utility/keyboard/getAlphanumericKeyboardLayout";
+import { motion, stagger } from "motion/react";
 
 interface KeyboardProps {
     visualizeEvents?: boolean;
@@ -22,6 +23,18 @@ interface KeyboardProps {
     showFunctionKeys?: boolean;
     characterLayout?: KeyboardCharacterLayout;
     physicalLayout?: KeyboardPhysicalLayout;
+}
+
+const KEYBOARD_VARIANTS = {
+    initial: {},
+    animate: { transition: { delayChildren: stagger(0.08) }},
+    exit: {},
+}
+
+const KEY_ROW_VARIANTS = {
+    initial: {},
+    animate: { transition: { delayChildren: stagger(0.02) }},
+    exit: {},
 }
 
 export const Keyboard: React.FC<KeyboardProps> = ({
@@ -39,7 +52,6 @@ export const Keyboard: React.FC<KeyboardProps> = ({
         }
 
         function onKeyDown(e: KeyboardEvent) {
-            console.log(e.code, e.key, e);
             getMatchingElements(e.code).forEach((element) => {
                 element.dataset.active = "true";
             });
@@ -64,7 +76,11 @@ export const Keyboard: React.FC<KeyboardProps> = ({
         <KeyboardContextProvider
             physicalLayout={physicalLayout}
             characterLayout={characterLayout}>
-            <div
+            <motion.div
+                variants={KEYBOARD_VARIANTS}
+                initial="initial"
+                animate="animate"
+                exit="exit"
                 className={styles.keyboard}
                 data-layout={physicalLayout}
                 data-mapping={characterLayout}>
@@ -83,7 +99,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
                     </div>
                 </div>}
                 {showNumpad && <Numpad/>}
-            </div>
+            </motion.div>
         </KeyboardContextProvider>
     );
 };
@@ -94,37 +110,90 @@ const FunctionKeys: React.FC = () => {
     return (
         <div className={styles.area_function}>
             {keys.map((group, i) => (
-                <div className={styles.row} key={i}>
+                <motion.div
+                    variants={KEY_ROW_VARIANTS}
+                    className={styles.row}
+                    key={i}>
                     {group.map((keyConfig) => (
                         <Key
                             key={keyConfig.code}
                             {...keyConfig}/>
                     ))}
-                </div>
+                </motion.div>
             ))}
         </div>
     )
 };
 
 
+type AlphanumericRowGroup =
+    | { type: "row"; keys: KeyConfig[] }
+    | { type: "iso-enter"; topRow: KeyConfig[]; homeRow: KeyConfig[] };
+
+// On ISO keyboards, Enter is a notched key spanning the QWERTY row and the home row,
+// so those two rows must be grouped and rendered together instead of independently.
+function groupAlphanumericRows(rows: KeyConfig[][], physicalLayout: KeyboardPhysicalLayout): AlphanumericRowGroup[] {
+    if (physicalLayout !== KeyboardPhysicalLayout.Iso) {
+        return rows.map((keys) => ({type: "row", keys}));
+    }
+    const [digitsRow, topRow, homeRow, ...remainingRows] = rows;
+    return [
+        {type: "row", keys: digitsRow},
+        {type: "iso-enter", topRow, homeRow},
+        ...remainingRows.map((keys) => ({type: "row" as const, keys})),
+    ];
+}
+
 const AlphanumericKeys: React.FC = () => {
     const {physicalLayout, characterLayout} = useContext(KeyboardContext);
     const keyCodes = getAlphanumericKeyboardLayout(physicalLayout);
-    const keys = keyCodes.map((group) => group.map((key) => mapKey(key, characterLayout)));
+    const rows = keyCodes.map((group) => group.map((key) => mapKey(key, characterLayout)));
+    const rowGroups = groupAlphanumericRows(rows, physicalLayout);
 
     return (
         <div className={styles.area_alphanumeric}>
-            {keys.map((row, i) => (
-                <div className={styles.row} key={i}>
-                    {row.map((keyConfig) => (
-                        <Key
-                            key={keyConfig.code}
-                            {...keyConfig}/>
-                    ))}
-                </div>
-            ))}
+            {rowGroups.map((group, i) => group.type === "row"
+                ? (
+                    <motion.div
+                        variants={KEY_ROW_VARIANTS}
+                        className={styles.row}
+                        key={i}>
+                        {group.keys.map((keyConfig) => (
+                            <Key
+                                key={keyConfig.code}
+                                {...keyConfig}/>
+                        ))}
+                    </motion.div>
+                )
+                : (
+                    <IsoEnterRowGroup
+                        key={i}
+                        topRow={group.topRow}
+                        homeRow={group.homeRow}/>
+                ))}
         </div>
     )
+};
+
+const IsoEnterRowGroup: React.FC<{ topRow: KeyConfig[]; homeRow: KeyConfig[] }> = ({topRow, homeRow}) => {
+    const enterKey = topRow.find((keyConfig) => keyConfig.code === KeyCode.Enter);
+    const topRowWithoutEnter = topRow.filter((keyConfig) => keyConfig.code !== KeyCode.Enter);
+
+    return (
+        <div className={styles.iso_enter_group}>
+            <motion.div variants={KEY_ROW_VARIANTS} className={styles.row}>
+                {topRowWithoutEnter.map((keyConfig) => (
+                    <Key key={keyConfig.code} {...keyConfig}/>
+                ))}
+            </motion.div>
+            <motion.div variants={KEY_ROW_VARIANTS} className={styles.row}>
+                {homeRow.map((keyConfig) => (
+                    <Key key={keyConfig.code} {...keyConfig}/>
+                ))}
+            </motion.div>
+            {enterKey && <Key {...enterKey}/>}
+        </div>
+    );
 };
 
 const SystemKeys: React.FC = () => {
@@ -132,13 +201,15 @@ const SystemKeys: React.FC = () => {
     const keys = KEYBOARD_SYSTEM_KEYS.map((key) => mapKey(key, characterLayout));
     return (
         <div className={styles.area_system}>
-            <div className={styles.row}>
+            <motion.div
+                variants={KEY_ROW_VARIANTS}
+                className={styles.row}>
                 {keys.map((keyConfig) => (
                     <Key
                         key={keyConfig.code}
                         {...keyConfig}/>
                 ))}
-            </div>
+            </motion.div>
         </div>
     )
 }
@@ -147,13 +218,15 @@ const EditingKeys: React.FC = () => {
     const {characterLayout} = useContext(KeyboardContext);
     const keys = KEYBOARD_EDITING_KEYS.map((key) => mapKey(key, characterLayout));
     return (
-        <div className={styles.area_editing}>
+        <motion.div
+            variants={KEY_ROW_VARIANTS}
+            className={styles.area_editing}>
             {keys.map((keyConfig) => (
                 <Key
                     key={keyConfig.code}
                     {...keyConfig}/>
             ))}
-        </div>
+        </motion.div>
     );
 }
 
@@ -161,13 +234,15 @@ const ArrowKeys: React.FC = () => {
     const {characterLayout} = useContext(KeyboardContext);
     const keys = KEYBOARD_ARROW_KEYS.map((key) => mapKey(key, characterLayout));
     return (
-        <div className={styles.area_arrow}>
+        <motion.div
+            variants={KEY_ROW_VARIANTS}
+            className={styles.area_arrow}>
             {keys.map((keyConfig) => (
                 <Key
                     key={keyConfig.code}
                     {...keyConfig}/>
             ))}
-        </div>
+        </motion.div>
     );
 }
 
@@ -175,12 +250,14 @@ const Numpad: React.FC = () => {
     const {characterLayout} = useContext(KeyboardContext);
     const keys = KEYBOARD_NUMPAD.map((key) => mapKey(key, characterLayout));
     return (
-        <div className={styles.area_numpad}>
+        <motion.div
+            variants={KEY_ROW_VARIANTS}
+            className={styles.area_numpad}>
             {keys.map((keyConfig) => (
                 <Key
                     key={keyConfig.code}
                     {...keyConfig}/>
             ))}
-        </div>
+        </motion.div>
     );
 }

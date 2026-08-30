@@ -1,5 +1,4 @@
-import {KeyCode} from "@/utility/keyboard/code";
-import {KeyboardPhysicalLayout} from "@/utility/keyboard/keys";
+import {KeyCode, type KeyboardPhysicalLayout} from "@/utility/keyboard/keys.types";
 
 export const KEYBOARD_FUNCTION_KEYS: KeyCode[][] = [
     [KeyCode.Escape],

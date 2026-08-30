@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import {Keyboard} from "@/components/ui/Keyboard/index";
-import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keyboard/keys";
+import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keyboard/keys.types";
+import {TextField} from "@/components";
 
 const meta = {
-    title: 'UI/Keyboard',
+    title: 'UI/Keyboard/Keyboard',
     component: Keyboard,
     parameters: {
         layout: 'centered',
@@ -44,7 +45,13 @@ const meta = {
         showNavigationKeys: false,
         showNumpad: false,
         visualizeEvents: true,
-    }
+    },
+    decorators: (Story) => (
+        <div className="flex flex-col">
+            <TextField/>
+            <Story />
+        </div>
+    ),
 } satisfies Meta<typeof Keyboard>;
 
 export default meta;

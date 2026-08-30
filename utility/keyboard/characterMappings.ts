@@ -1,5 +1,4 @@
-import {KeyCode} from "@/utility/keyboard/code";
-import {KeyboardCharacterLayout, type KeyConfig} from "@/utility/keyboard/keys";
+import {KeyCode, KeyboardCharacterLayout, type KeyConfig} from "@/utility/keyboard/keys.types";
 import {
     ArrowBigUpDashIcon,
     ArrowBigUpIcon,
@@ -9,27 +8,48 @@ import {
 } from "lucide-react";
 
 export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
-    [KeyCode.KeyA]: { code: KeyCode.KeyA, primaryKey: "a", shiftKey: "A" },
+    [KeyCode.KeyA]: { code: KeyCode.KeyA, primaryKey: "a", shiftKey: "A", deadKeyVariants: {
+            "´": { primaryKey: "á", shiftKey: "Á" },
+            "`": { primaryKey: "à", shiftKey: "À" },
+            "^": { primaryKey: "â", shiftKey: "Â" },
+    }},
     [KeyCode.KeyB]: { code: KeyCode.KeyB, primaryKey: "b", shiftKey: "B" },
     [KeyCode.KeyC]: { code: KeyCode.KeyC, primaryKey: "c", shiftKey: "C" },
     [KeyCode.KeyD]: { code: KeyCode.KeyD, primaryKey: "d", shiftKey: "D" },
-    [KeyCode.KeyE]: { code: KeyCode.KeyE, primaryKey: "e", shiftKey: "E", altKey: "€" },
+    [KeyCode.KeyE]: { code: KeyCode.KeyE, primaryKey: "e", shiftKey: "E", altGraphKey: "€", deadKeyVariants: {
+            "´": { primaryKey: "é", shiftKey: "É" },
+            "`": { primaryKey: "è", shiftKey: "È" },
+            "^": { primaryKey: "ê", shiftKey: "Ê" },
+        } },
     [KeyCode.KeyF]: { code: KeyCode.KeyF, primaryKey: "f", shiftKey: "F" },
     [KeyCode.KeyG]: { code: KeyCode.KeyG, primaryKey: "g", shiftKey: "G" },
     [KeyCode.KeyH]: { code: KeyCode.KeyH, primaryKey: "h", shiftKey: "H" },
-    [KeyCode.KeyI]: { code: KeyCode.KeyI, primaryKey: "i", shiftKey: "I" },
+    [KeyCode.KeyI]: { code: KeyCode.KeyI, primaryKey: "i", shiftKey: "I", deadKeyVariants: {
+            "´": { primaryKey: "í", shiftKey: "Í" },
+            "`": { primaryKey: "ì", shiftKey: "Ì" },
+            "^": { primaryKey: "î", shiftKey: "Î" },
+        } },
     [KeyCode.KeyJ]: { code: KeyCode.KeyJ, primaryKey: "j", shiftKey: "J" },
     [KeyCode.KeyK]: { code: KeyCode.KeyK, primaryKey: "k", shiftKey: "K" },
     [KeyCode.KeyL]: { code: KeyCode.KeyL, primaryKey: "l", shiftKey: "L" },
-    [KeyCode.KeyM]: { code: KeyCode.KeyM, primaryKey: "m", shiftKey: "M", altKey: "µ" },
+    // M + AltGr often does not produce µ, because other programs use this as a shortcut for mute
+    [KeyCode.KeyM]: { code: KeyCode.KeyM, primaryKey: "m", shiftKey: "M", altGraphKey: "µ" },
     [KeyCode.KeyN]: { code: KeyCode.KeyN, primaryKey: "n", shiftKey: "N" },
-    [KeyCode.KeyO]: { code: KeyCode.KeyO, primaryKey: "o", shiftKey: "O" },
+    [KeyCode.KeyO]: { code: KeyCode.KeyO, primaryKey: "o", shiftKey: "O", deadKeyVariants: {
+            "´": { primaryKey: "ó", shiftKey: "Ó" },
+            "`": { primaryKey: "ò", shiftKey: "Ò" },
+            "^": { primaryKey: "ô", shiftKey: "Ô" },
+        } },
     [KeyCode.KeyP]: { code: KeyCode.KeyP, primaryKey: "p", shiftKey: "P" },
-    [KeyCode.KeyQ]: { code: KeyCode.KeyQ, primaryKey: "q", shiftKey: "Q", altKey: "@" },
+    [KeyCode.KeyQ]: { code: KeyCode.KeyQ, primaryKey: "q", shiftKey: "Q", altGraphKey: "@" },
     [KeyCode.KeyR]: { code: KeyCode.KeyR, primaryKey: "r", shiftKey: "R" },
     [KeyCode.KeyS]: { code: KeyCode.KeyS, primaryKey: "s", shiftKey: "S" },
     [KeyCode.KeyT]: { code: KeyCode.KeyT, primaryKey: "t", shiftKey: "T" },
-    [KeyCode.KeyU]: { code: KeyCode.KeyU, primaryKey: "u", shiftKey: "U" },
+    [KeyCode.KeyU]: { code: KeyCode.KeyU, primaryKey: "u", shiftKey: "U", deadKeyVariants: {
+            "´": { primaryKey: "ú", shiftKey: "Ú" },
+            "`": { primaryKey: "ù", shiftKey: "Ù" },
+            "^": { primaryKey: "û", shiftKey: "Û" },
+        } },
     [KeyCode.KeyV]: { code: KeyCode.KeyV, primaryKey: "v", shiftKey: "V" },
     [KeyCode.KeyW]: { code: KeyCode.KeyW, primaryKey: "w", shiftKey: "W" },
     [KeyCode.KeyX]: { code: KeyCode.KeyX, primaryKey: "x", shiftKey: "X" },
@@ -37,16 +57,16 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.KeyZ]: { code: KeyCode.KeyZ, primaryKey: "z", shiftKey: "Z" },
 
     // digits
-    [KeyCode.Digit0]: { code: KeyCode.Digit0, primaryKey: "0", shiftKey: "=", altKey: "}" },
+    [KeyCode.Digit0]: { code: KeyCode.Digit0, primaryKey: "0", shiftKey: "=", altGraphKey: "}" },
     [KeyCode.Digit1]: { code: KeyCode.Digit1, primaryKey: "1", shiftKey: "!" },
-    [KeyCode.Digit2]: { code: KeyCode.Digit2, primaryKey: "2", shiftKey: "\"", altKey: "²" },
-    [KeyCode.Digit3]: { code: KeyCode.Digit3, primaryKey: "3", shiftKey: "§", altKey: "³" },
+    [KeyCode.Digit2]: { code: KeyCode.Digit2, primaryKey: "2", shiftKey: "\"", altGraphKey: "²" },
+    [KeyCode.Digit3]: { code: KeyCode.Digit3, primaryKey: "3", shiftKey: "§", altGraphKey: "³" },
     [KeyCode.Digit4]: { code: KeyCode.Digit4, primaryKey: "4", shiftKey: "$" },
     [KeyCode.Digit5]: { code: KeyCode.Digit5, primaryKey: "5", shiftKey: "%" },
     [KeyCode.Digit6]: { code: KeyCode.Digit6, primaryKey: "6", shiftKey: "&" },
-    [KeyCode.Digit7]: { code: KeyCode.Digit7, primaryKey: "7", shiftKey: "/", altKey: "{" },
-    [KeyCode.Digit8]: { code: KeyCode.Digit8, primaryKey: "8", shiftKey: "(", altKey: "[" },
-    [KeyCode.Digit9]: { code: KeyCode.Digit9, primaryKey: "9", shiftKey: ")", altKey: "]" },
+    [KeyCode.Digit7]: { code: KeyCode.Digit7, primaryKey: "7", shiftKey: "/", altGraphKey: "{" },
+    [KeyCode.Digit8]: { code: KeyCode.Digit8, primaryKey: "8", shiftKey: "(", altGraphKey: "[" },
+    [KeyCode.Digit9]: { code: KeyCode.Digit9, primaryKey: "9", shiftKey: ")", altGraphKey: "]" },
 
     // function keys
     [KeyCode.F1]: { code: KeyCode.F1, primaryKey: "F1" },
@@ -86,7 +106,7 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.MetaLeft]: { code: KeyCode.MetaLeft, primaryKey: "Meta" },
     [KeyCode.MetaRight]: { code: KeyCode.MetaRight, primaryKey: "Meta" },
     [KeyCode.ContextMenu]: { code: KeyCode.ContextMenu, primaryKey: "Menu" },
-    [KeyCode.IntlBackslash]: { code: KeyCode.IntlBackslash, primaryKey: "<", shiftKey: ">", altKey: "|" },
+    [KeyCode.IntlBackslash]: { code: KeyCode.IntlBackslash, primaryKey: "<", shiftKey: ">", altGraphKey: "|" },
     [KeyCode.Fn]: { code: KeyCode.Fn, primaryKey: "Fn" },
     [KeyCode.Backquote]: { code: KeyCode.Backquote, primaryKey: "^", shiftKey: "°" },
     [KeyCode.Backslash]: { code: KeyCode.Backslash, primaryKey: "#", shiftKey: "'" },
@@ -94,7 +114,7 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.Backspace]: { code: KeyCode.Backspace, primaryKey: "Backspace", Icon: ArrowLeftIcon },
     [KeyCode.Tab]: { code: KeyCode.Tab, primaryKey: "Tab", Icon: ArrowRightToLineIcon },
     [KeyCode.BracketLeft]: { code: KeyCode.BracketLeft, primaryKey: "ü", shiftKey: "Ü" },
-    [KeyCode.BracketRight]: { code: KeyCode.BracketRight, primaryKey: "+", shiftKey: "*", altKey: "~" },
+    [KeyCode.BracketRight]: { code: KeyCode.BracketRight, primaryKey: "+", shiftKey: "*", altGraphKey: "~" },
     [KeyCode.Enter]: { code: KeyCode.Enter, primaryKey: "Enter", Icon: CornerDownLeftIcon },
     [KeyCode.CapsLock]: { code: KeyCode.CapsLock, primaryKey: "Caps Lock", Icon: ArrowBigUpDashIcon },
     [KeyCode.Semicolon]: { code: KeyCode.Semicolon, primaryKey: "ö", shiftKey: "Ö" },
@@ -103,7 +123,7 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.Period]: { code: KeyCode.Period, primaryKey: ".", shiftKey: ":" },
     [KeyCode.Slash]: { code: KeyCode.Slash, primaryKey: "-", shiftKey: "_" },
     [KeyCode.Command]: { code: KeyCode.Command, primaryKey: "Cmd" },
-    [KeyCode.Minus]: { code: KeyCode.Minus, primaryKey: "ß", shiftKey: "?", altKey: "\\" },
+    [KeyCode.Minus]: { code: KeyCode.Minus, primaryKey: "ß", shiftKey: "?", altGraphKey: "\\" },
 
     // extra function keys
     [KeyCode.PrintScreen]: { code: KeyCode.PrintScreen, primaryKey: "Druck" },
@@ -225,24 +245,24 @@ export const KEY_MAPPING_AZERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.Slash]: { code: KeyCode.Slash, primaryKey: "!", shiftKey: "§" },
 
     // digit row (unshifted = symbol, shifted = digit)
-    [KeyCode.Digit0]: { code: KeyCode.Digit0, primaryKey: "à", shiftKey: "0", altKey: "@" },
+    [KeyCode.Digit0]: { code: KeyCode.Digit0, primaryKey: "à", shiftKey: "0", altGraphKey: "@" },
     [KeyCode.Digit1]: { code: KeyCode.Digit1, primaryKey: "&", shiftKey: "1" },
-    [KeyCode.Digit2]: { code: KeyCode.Digit2, primaryKey: "é", shiftKey: "2", altKey: "~" },
-    [KeyCode.Digit3]: { code: KeyCode.Digit3, primaryKey: "\"", shiftKey: "3", altKey: "#" },
-    [KeyCode.Digit4]: { code: KeyCode.Digit4, primaryKey: "'", shiftKey: "4", altKey: "{" },
-    [KeyCode.Digit5]: { code: KeyCode.Digit5, primaryKey: "(", shiftKey: "5", altKey: "[" },
-    [KeyCode.Digit6]: { code: KeyCode.Digit6, primaryKey: "-", shiftKey: "6", altKey: "|" },
-    [KeyCode.Digit7]: { code: KeyCode.Digit7, primaryKey: "è", shiftKey: "7", altKey: "`" },
-    [KeyCode.Digit8]: { code: KeyCode.Digit8, primaryKey: "_", shiftKey: "8", altKey: "\\" },
-    [KeyCode.Digit9]: { code: KeyCode.Digit9, primaryKey: "ç", shiftKey: "9", altKey: "^" },
+    [KeyCode.Digit2]: { code: KeyCode.Digit2, primaryKey: "é", shiftKey: "2", altGraphKey: "~" },
+    [KeyCode.Digit3]: { code: KeyCode.Digit3, primaryKey: "\"", shiftKey: "3", altGraphKey: "#" },
+    [KeyCode.Digit4]: { code: KeyCode.Digit4, primaryKey: "'", shiftKey: "4", altGraphKey: "{" },
+    [KeyCode.Digit5]: { code: KeyCode.Digit5, primaryKey: "(", shiftKey: "5", altGraphKey: "[" },
+    [KeyCode.Digit6]: { code: KeyCode.Digit6, primaryKey: "-", shiftKey: "6", altGraphKey: "|" },
+    [KeyCode.Digit7]: { code: KeyCode.Digit7, primaryKey: "è", shiftKey: "7", altGraphKey: "`" },
+    [KeyCode.Digit8]: { code: KeyCode.Digit8, primaryKey: "_", shiftKey: "8", altGraphKey: "\\" },
+    [KeyCode.Digit9]: { code: KeyCode.Digit9, primaryKey: "ç", shiftKey: "9", altGraphKey: "^" },
 
     // symbol keys around the digit row / right of L / ISO extra key
-    [KeyCode.Minus]: { code: KeyCode.Minus, primaryKey: ")", shiftKey: "°", altKey: "]" },
-    [KeyCode.Equal]: { code: KeyCode.Equal, primaryKey: "=", shiftKey: "+", altKey: "}" },
+    [KeyCode.Minus]: { code: KeyCode.Minus, primaryKey: ")", shiftKey: "°", altGraphKey: "]" },
+    [KeyCode.Equal]: { code: KeyCode.Equal, primaryKey: "=", shiftKey: "+", altGraphKey: "}" },
     [KeyCode.BracketLeft]: { code: KeyCode.BracketLeft, primaryKey: "^", shiftKey: "¨" },
-    [KeyCode.BracketRight]: { code: KeyCode.BracketRight, primaryKey: "$", shiftKey: "£", altKey: "¤" },
+    [KeyCode.BracketRight]: { code: KeyCode.BracketRight, primaryKey: "$", shiftKey: "£", altGraphKey: "¤" },
     [KeyCode.Backslash]: { code: KeyCode.Backslash, primaryKey: "*", shiftKey: "µ" },
-    [KeyCode.IntlBackslash]: { code: KeyCode.IntlBackslash, primaryKey: "<", shiftKey: ">", altKey: "|" },
+    [KeyCode.IntlBackslash]: { code: KeyCode.IntlBackslash, primaryKey: "<", shiftKey: ">", altGraphKey: "|" },
     [KeyCode.Backquote]: { code: KeyCode.Backquote, primaryKey: "²" },
     [KeyCode.Quote]: { code: KeyCode.Quote, primaryKey: "ù", shiftKey: "%" },
 };

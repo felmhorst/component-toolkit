@@ -4,7 +4,7 @@ import {Direction} from "@/utility/types";
 import {Slide} from "@/components/animations/Slide/Slide";
 import styles from "./SlideText.module.css";
 
-type TextSplit = "char" | "word" | "line";
+type TextSplit = "char" | "word" | "line" | "none";
 
 interface SlideTextProps {
     direction?: Direction;
@@ -28,12 +28,14 @@ function splitText(text: string, split: TextSplit) {
             return text.split(" ").map(word => word + " ");
         case "line":
             return text.split("\n");
+        default:
+            return [text];
     }
 }
 
 export const SlideText: React.FC<SlideTextProps> = ({
     text,
-    direction = Direction.UP,
+    direction = Direction.Up,
     split = "line",
 }) => {
     return (

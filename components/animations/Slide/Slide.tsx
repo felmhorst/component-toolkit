@@ -30,7 +30,7 @@ interface SlideProps extends PropsWithChildren {
 export const Slide: React.FC<SlideProps> = ({
     children,
     tag = "div",
-    direction = Direction.UP,
+    direction = Direction.Up,
     asChild = false,
 }) => {
 
