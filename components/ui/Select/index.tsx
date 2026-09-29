@@ -5,28 +5,42 @@ import styles from "./index.module.css";
 import { ChevronDown } from "lucide-react";
 import { SelectContext } from "@/components/ui/Select/SelectContext";
 import { isCharacterKey } from "@/utility/isCharacterKey";
+export { Option } from "@/components/ui/Select/Option";
 
+interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "value" | "defaultValue" | "onChange"> {
+    placeholder?: string;
+    value?: string | null;
+    defaultValue?: string | null;
+    onChange?: (value: string | null) => void;
+}
 
-export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (props) => {
+export const Select: React.FC<SelectProps> = (props) => {
     const {
         children,
         placeholder,
         disabled = false,
         id,
+        value,
+        defaultValue = null,
+        onChange,
     } = props;
+
+    const isControlled = value !== undefined;
 
     const [options, setOptions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [hovered, setHovered] = useState<string | null>(null);
-    const [selected, setSelected] = useState<string | null>(null);
+    const [internalSelected, setInternalSelected] = useState<string | null>(defaultValue);
+    const selected = isControlled ? value : internalSelected;
     const listboxId = useId();
 
     const closeOptions = useCallback(() => setIsOpen(false), []);
 
     const setSelectedAndHovered = useCallback((value: string | null) => {
-        setSelected(value);
+        if (!isControlled) setInternalSelected(value);
+        onChange?.(value);
         setHovered(value);
-    }, []);
+    }, [isControlled, onChange]);
 
     const setSelectedAndClose = useCallback((value: string | null) => {
         setSelectedAndHovered(value);

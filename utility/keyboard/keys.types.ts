@@ -6,10 +6,21 @@ export enum KeyboardCharacterLayout {
     Azerty = "azerty"
 }
 
+export const KEYBOARD_CHARACTER_LAYOUTS: KeyboardCharacterLayout[] = [
+    KeyboardCharacterLayout.Qwerty,
+    KeyboardCharacterLayout.Qwertz,
+    KeyboardCharacterLayout.Azerty,
+]
+
 export enum KeyboardPhysicalLayout {
     Ansi = "ansi",
     Iso = "iso",
 }
+
+export const KEYBOARD_PHYSICAL_LAYOUTS: KeyboardPhysicalLayout[] = [
+    KeyboardPhysicalLayout.Ansi,
+    KeyboardPhysicalLayout.Iso,
+]
 
 interface DeadKeyOutput {
     primaryKey: string;
