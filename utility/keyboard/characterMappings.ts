@@ -1,10 +1,10 @@
 import {KeyCode, KeyboardCharacterLayout, type KeyConfig} from "@/utility/keyboard/keys.types";
 import {
     ArrowBigUpDashIcon,
-    ArrowBigUpIcon,
-    ArrowLeftIcon,
-    ArrowRightToLineIcon,
-    CornerDownLeftIcon, SpaceIcon
+    ArrowBigUpIcon, ArrowDownIcon,
+    ArrowLeftIcon, ArrowRightIcon,
+    ArrowRightToLineIcon, ArrowUpIcon,
+    CornerDownLeftIcon, SpaceIcon, SquareMenuIcon
 } from "lucide-react";
 
 export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
@@ -105,7 +105,7 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.AltRight]: { code: KeyCode.AltRight, primaryKey: "Alt Gr" },
     [KeyCode.MetaLeft]: { code: KeyCode.MetaLeft, primaryKey: "Meta" },
     [KeyCode.MetaRight]: { code: KeyCode.MetaRight, primaryKey: "Meta" },
-    [KeyCode.ContextMenu]: { code: KeyCode.ContextMenu, primaryKey: "Menu" },
+    [KeyCode.ContextMenu]: { code: KeyCode.ContextMenu, primaryKey: "Menu", Icon: SquareMenuIcon },
     [KeyCode.IntlBackslash]: { code: KeyCode.IntlBackslash, primaryKey: "<", shiftKey: ">", altGraphKey: "|" },
     [KeyCode.Fn]: { code: KeyCode.Fn, primaryKey: "Fn" },
     [KeyCode.Backquote]: { code: KeyCode.Backquote, primaryKey: "^", shiftKey: "°" },
@@ -137,10 +137,10 @@ export const KEY_MAPPING_QWERTY: Record<KeyCode, KeyConfig> = {
     [KeyCode.PageDown]: { code: KeyCode.PageDown, primaryKey: "Bild ↓" },
 
     // navigation keys
-    [KeyCode.ArrowUp]: { code: KeyCode.ArrowUp, primaryKey: "↑" },
-    [KeyCode.ArrowDown]: { code: KeyCode.ArrowDown, primaryKey: "↓" },
-    [KeyCode.ArrowLeft]: { code: KeyCode.ArrowLeft, primaryKey: "←" },
-    [KeyCode.ArrowRight]: { code: KeyCode.ArrowRight, primaryKey: "→" },
+    [KeyCode.ArrowUp]: { code: KeyCode.ArrowUp, primaryKey: "↑", Icon: ArrowUpIcon },
+    [KeyCode.ArrowDown]: { code: KeyCode.ArrowDown, primaryKey: "↓", Icon: ArrowDownIcon },
+    [KeyCode.ArrowLeft]: { code: KeyCode.ArrowLeft, primaryKey: "←", Icon: ArrowLeftIcon },
+    [KeyCode.ArrowRight]: { code: KeyCode.ArrowRight, primaryKey: "→", Icon: ArrowRightIcon },
 
     // numpad
     [KeyCode.NumLock]: { code: KeyCode.NumLock, primaryKey: "Num" },

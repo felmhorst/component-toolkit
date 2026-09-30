@@ -42,6 +42,7 @@ export const Key: React.FC<KeyProps> = (props) => {
     return (
         <motion.button
             variants={KEY_VARIANTS}
+            key={"key-" + code}
             id={"key-" + code}
             data-keycode={code}
             data-active={false}

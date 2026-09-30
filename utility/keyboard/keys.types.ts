@@ -22,6 +22,18 @@ export const KEYBOARD_PHYSICAL_LAYOUTS: KeyboardPhysicalLayout[] = [
     KeyboardPhysicalLayout.Iso,
 ]
 
+export enum KeyboardFormFactor {
+    FullSize = "100%",
+    Tenkeyless = "80%",
+    Percent60 = "60%",
+}
+
+export interface FormFactorConfig {
+    showNumpad?: boolean;
+    showNavigationKeys?: boolean;
+    showFunctionKeys?: boolean;
+}
+
 interface DeadKeyOutput {
     primaryKey: string;
     shiftKey?: string;

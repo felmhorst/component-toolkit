@@ -157,15 +157,14 @@ const AlphanumericKeys: React.FC = () => {
                     <motion.div
                         variants={KEY_ROW_VARIANTS}
                         className={styles.row}
-                        key={i}>
+                        key={"row-" + i}>
                         {group.keys.map((keyConfig) => (
                             <Key
                                 key={keyConfig.code}
                                 {...keyConfig}/>
                         ))}
                     </motion.div>
-                )
-                : (
+                ) : (
                     <IsoEnterRowGroup
                         key={i}
                         topRow={group.topRow}
