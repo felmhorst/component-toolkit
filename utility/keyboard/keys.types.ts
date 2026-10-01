@@ -22,6 +22,16 @@ export const KEYBOARD_PHYSICAL_LAYOUTS: KeyboardPhysicalLayout[] = [
     KeyboardPhysicalLayout.Iso,
 ]
 
+export enum KeyboardOs {
+    Windows = "windows",
+    MacOs = "macos",
+}
+
+export const KEYBOARD_OPERATING_SYSTEMS: KeyboardOs[] = [
+    KeyboardOs.Windows,
+    KeyboardOs.MacOs,
+]
+
 export enum KeyboardFormFactor {
     FullSize = "100%",
     Tenkeyless = "80%",

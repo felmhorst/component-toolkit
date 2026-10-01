@@ -1,7 +1,7 @@
 "use client";
 
 import React, {createContext, type PropsWithChildren, useEffect, useMemo, useState} from "react";
-import {KeyboardCharacterLayout, KeyboardPhysicalLayout} from "@/utility/keyboard/keys.types";
+import {KeyboardCharacterLayout, KeyboardOs, KeyboardPhysicalLayout} from "@/utility/keyboard/keys.types";
 import {mapEventToKey} from "@/utility/keyboard/mapEventToKey";
 import {isModifierKey} from "@/utility/keyboard/isModifierKey";
 
@@ -17,6 +17,7 @@ export const KeyboardContext = createContext<{
     isScrollLock: boolean,
     characterLayout: KeyboardCharacterLayout,
     physicalLayout: KeyboardPhysicalLayout,
+    os: KeyboardOs,
 }>({
     deadKey: null,
     isCtrlKeyPressed: false,
@@ -29,17 +30,20 @@ export const KeyboardContext = createContext<{
     isScrollLock: false,
     characterLayout: KeyboardCharacterLayout.Qwerty,
     physicalLayout: KeyboardPhysicalLayout.Ansi,
+    os: KeyboardOs.Windows,
 });
 
 interface KeyboardContextProviderProps extends PropsWithChildren {
     characterLayout?: KeyboardCharacterLayout;
     physicalLayout?: KeyboardPhysicalLayout;
+    os?: KeyboardOs;
 }
 
 export const KeyboardContextProvider: React.FC<KeyboardContextProviderProps> = ({
     children,
     characterLayout = KeyboardCharacterLayout.Qwerty,
     physicalLayout = KeyboardPhysicalLayout.Ansi,
+    os = KeyboardOs.Windows,
 }) => {
     // function keys
     const [isCtrlKeyPressed, setIsCtrlKeyPressed] = useState<boolean>(false);
@@ -112,7 +116,8 @@ export const KeyboardContextProvider: React.FC<KeyboardContextProviderProps> = (
         isNumLock,
         isScrollLock,
         characterLayout,
-        physicalLayout
+        physicalLayout,
+        os
     }), [
         deadKey,
         isCtrlKeyPressed,
@@ -124,7 +129,8 @@ export const KeyboardContextProvider: React.FC<KeyboardContextProviderProps> = (
         isNumLock,
         isScrollLock,
         characterLayout,
-        physicalLayout
+        physicalLayout,
+        os
     ]);
 
     return (

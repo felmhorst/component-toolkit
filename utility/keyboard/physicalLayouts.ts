@@ -29,14 +29,13 @@ export const KEYBOARD_NUMPAD: KeyCode[] = [
 ] as const;
 
 const KEYBOARD_ALPHANUMERIC_ROW_1: KeyCode[] = [KeyCode.Backquote, KeyCode.Digit1, KeyCode.Digit2, KeyCode.Digit3, KeyCode.Digit4, KeyCode.Digit5, KeyCode.Digit6, KeyCode.Digit7, KeyCode.Digit8, KeyCode.Digit9, KeyCode.Digit0, KeyCode.Minus, KeyCode.Equal, KeyCode.Backspace];
-const KEYBOARD_ALPHANUMERIC_ROW_5: KeyCode[] = [KeyCode.ControlLeft, KeyCode.MetaLeft, KeyCode.AltLeft, KeyCode.Space, KeyCode.AltRight, KeyCode.Fn, KeyCode.ContextMenu, KeyCode.ControlRight];
 
+// The bottom row (modifier keys around the spacebar) is OS-dependent, see operatingSystems.ts.
 export const KEYBOARD_ALPHANUMERIC_ISO: KeyCode[][] = [
     KEYBOARD_ALPHANUMERIC_ROW_1,
     [KeyCode.Tab, KeyCode.KeyQ, KeyCode.KeyW, KeyCode.KeyE, KeyCode.KeyR, KeyCode.KeyT, KeyCode.KeyY, KeyCode.KeyU, KeyCode.KeyI, KeyCode.KeyO, KeyCode.KeyP, KeyCode.BracketLeft, KeyCode.BracketRight, KeyCode.Enter],
     [KeyCode.CapsLock, KeyCode.KeyA, KeyCode.KeyS, KeyCode.KeyD, KeyCode.KeyF, KeyCode.KeyG, KeyCode.KeyH, KeyCode.KeyJ, KeyCode.KeyK, KeyCode.KeyL, KeyCode.Semicolon, KeyCode.Quote, KeyCode.Backslash],
     [KeyCode.ShiftLeft, KeyCode.IntlBackslash, KeyCode.KeyZ, KeyCode.KeyX, KeyCode.KeyC, KeyCode.KeyV, KeyCode.KeyB, KeyCode.KeyN, KeyCode.KeyM, KeyCode.Comma, KeyCode.Period, KeyCode.Slash, KeyCode.ShiftRight],
-    KEYBOARD_ALPHANUMERIC_ROW_5,
 ] as const;
 
 export const KEYBOARD_ALPHANUMERIC_ANSI: KeyCode[][] = [
@@ -44,7 +43,6 @@ export const KEYBOARD_ALPHANUMERIC_ANSI: KeyCode[][] = [
     [KeyCode.Tab, KeyCode.KeyQ, KeyCode.KeyW, KeyCode.KeyE, KeyCode.KeyR, KeyCode.KeyT, KeyCode.KeyY, KeyCode.KeyU, KeyCode.KeyI, KeyCode.KeyO, KeyCode.KeyP, KeyCode.BracketLeft, KeyCode.BracketRight, KeyCode.Backslash],
     [KeyCode.CapsLock, KeyCode.KeyA, KeyCode.KeyS, KeyCode.KeyD, KeyCode.KeyF, KeyCode.KeyG, KeyCode.KeyH, KeyCode.KeyJ, KeyCode.KeyK, KeyCode.KeyL, KeyCode.Semicolon, KeyCode.Quote, KeyCode.Enter],
     [KeyCode.ShiftLeft, KeyCode.KeyZ, KeyCode.KeyX, KeyCode.KeyC, KeyCode.KeyV, KeyCode.KeyB, KeyCode.KeyN, KeyCode.KeyM, KeyCode.Comma, KeyCode.Period, KeyCode.Slash, KeyCode.ShiftRight],
-    KEYBOARD_ALPHANUMERIC_ROW_5,
 ] as const;
 
 export const KEYBOARD_PHYSICAL_LAYOUTS: Record<KeyboardPhysicalLayout, KeyCode[][]> = {
